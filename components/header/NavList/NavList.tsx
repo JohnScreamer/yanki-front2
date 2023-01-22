@@ -42,17 +42,17 @@ const NavList: FC<NavListType> = ({ setSearchStatus, searchStatus }) => {
             icon: "🛒",
         });
     };
+    const totalAmount = useAppSelector((state) => state.cart.amount);
+    const favorite = useAppSelector((state) => state.profile.favorite);
+    const totalFavorite = favorite ? favorite.length : 0;
     const handlerGotoFavorite = () => {
-        if (!!isCartEmpty && isAuth) {
+        if (!!totalFavorite && isAuth) {
             return route.push("/favorite");
         }
         toast.error(`Немає обраних ігор.`, {
             icon: "❤️",
         });
     };
-    const totalAmount = useAppSelector((state) => state.cart.amount);
-    const favorite = useAppSelector((state) => state.profile.favorite);
-    const totalFavorite = favorite ? favorite.length : 0;
 
     const toggleSearchStatus: MouseEventHandler<SVGSVGElement> = (e) => {
         setSearchStatus((status) => !status);

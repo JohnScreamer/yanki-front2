@@ -11,6 +11,8 @@ const favorite: FC<FavoriteType> = () => {
     const games = useAppSelector((state) => state.profile.favorite);
     const route = useRouter();
     const isWindow = typeof window === "undefined" ? false : true;
+    console.log(favorite.length);
+
     if (!favorite.length && isWindow) {
         route.push("/");
     }
