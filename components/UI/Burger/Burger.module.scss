@@ -1,0 +1,22 @@
+.btn {
+    margin-right: 15px;
+    transition-duration: 300ms;
+    display: block;
+    width: 40px;
+
+    &:hover {
+        span {
+            width: 24px;
+            transition-duration: 300ms;
+        }
+    }
+}
+#close {
+    transition-duration: 300ms;
+    height: 22px;
+
+    &:hover {
+        transition-duration: 300ms;
+        transform: scale(130%);
+    }
+}

@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Raleway:wght@200;300;400;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-family: "Raleway", sans-serif;
+}
+body,
+html {
+    height: 100%;
+}
+#__next {
+    height: 100%;
+}
+@layer components {
+    .Container {
+        @apply max-w-container px-[15px] w-full  mx-auto;
+    }
+    .center {
+        @apply flex justify-center items-center;
+    }
+}
+.main {
+    background: salmon;
+    height: 100%;
+    flex: 1 1 auto;
+}
+
+.MuiMenu-list {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.swiper-slide {
+    width: 270px !important ;
+}
+.swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+    background: #e0bea2;
+    position: relative;
+    margin-right: 20px;
+}
+.swiper-button-next::after {
+    content: url("./../public/svg/arrowRight.svg") !important;
+    position: relative;
+    top: -3px;
+    left: 0px;
+}
+.swiper-button-prev {
+    width: 40px !important;
+    height: 40px !important;
+    background: #e0bea2;
+    position: relative;
+    margin-right: 20px;
+}
+.swiper-button-prev::after {
+    content: url("./../public/svg/arrowRight.svg") !important;
+    position: relative;
+    top: 3px;
+    transform: rotate(180deg);
+    left: -3px;
+}
+@media (max-width: 640px) {
+    .swiper-slide {
+        width: 165px !important ;
+    }
+    .swiper-button-next {
+        margin-right: 0px;
+    }
+}

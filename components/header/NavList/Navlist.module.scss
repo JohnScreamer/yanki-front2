@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    li {
+        transition-duration: 300ms;
+        &:hover {
+            cursor: pointer;
+            path {
+                transition-duration: 300ms;
+                fill: #e0bea2;
+            }
+        }
+    }
+    li:not(:last-child) {
+        margin-right: 30px;
+    }
+}
+.wrapperMain {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    li {
+        transition-duration: 300ms;
+        &:hover {
+            cursor: pointer;
+            path {
+                transition-duration: 300ms;
+                fill: black;
+            }
+        }
+        path {
+            fill: #e0bea2;
+        }
+    }
+    li:not(:last-child) {
+        margin-right: 30px;
+    }
+}

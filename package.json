@@ -1,0 +1,55 @@
+{
+  "name": "next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev ",
+    "build": "next build",
+    "start": "next dev -p 4001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@editorjs/editorjs": "^2.25.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^2.9.10",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.2",
+    "@reduxjs/toolkit": "^1.8.6",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "axios": "^1.2.2",
+    "cookies-next": "^2.1.1",
+    "js-cookie": "^3.0.1",
+    "next": "12.3.1",
+    "next-redux-cookie-wrapper": "^2.2.1",
+    "next-redux-wrapper": "^8.0.0",
+    "nextjs-progressbar": "^0.0.16",
+    "nookies": "^2.5.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.41.5",
+    "react-hook-form-persist": "^3.0.0",
+    "react-hot-toast": "^2.4.0",
+    "react-just-parallax": "^3.1.14",
+    "react-redux": "^8.0.4",
+    "reselect": "^4.1.7",
+    "sass": "^1.55.0",
+    "swiper": "^8.4.5",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@types/node": "18.8.5",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "autoprefixer": "^10.4.12",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1",
+    "typescript": "4.8.4"
+  },
+  "engines": {
+    "node": "16.14.2"
+  }
+}
