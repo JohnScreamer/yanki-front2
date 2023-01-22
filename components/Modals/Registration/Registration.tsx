@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { setProfile } from "../../../Redux/Slice/Profile";
 import { useRouter } from "next/router";
 import ShowError from "../../PopUp/ShowErrorPopUp";
+import Cookies from "js-cookie";
 const schema = yup
     .object({
         email: yup
@@ -54,6 +55,7 @@ const Registration: FC<RegistrationType> = () => {
         router.push({ query: { ...newRoute } });
     };
     if (isSuccess) {
+        data?.token && Cookies.set("auth", data?.token);
         goBack();
     }
     const {

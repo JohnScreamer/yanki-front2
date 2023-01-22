@@ -77,7 +77,7 @@ const Authorization: FC<AuthorizationType> = () => {
                 icon: "👏",
             });
             firstTime.current = false;
-            Cookies.set("frontAuyh", "zxc");
+            data?.token && Cookies.set("auth", data?.token);
         }
     }
 
