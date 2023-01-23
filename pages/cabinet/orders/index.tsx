@@ -7,6 +7,7 @@ import { wrapper } from "../../../Redux/store";
 import { OrderListResponse } from "../../../Types/Order.Types";
 import { useAppSelector } from "../../../Hooks/common";
 import { useRouter } from "next/router";
+import HeadLayout from "../../../components/layouts/HeadLayout";
 
 export const getServerSideProps: GetServerSideProps =
     wrapper.getServerSideProps((store) => async (ctx) => {
@@ -54,10 +55,12 @@ const orders: FC<ordersType> = ({ data }) => {
     ));
 
     return (
-        <div className="Container">
-            <Nav />
-            <div>{list}</div>
-        </div>
+        <HeadLayout name="Замовлення">
+            <div className="Container">
+                <Nav />
+                <div>{list}</div>
+            </div>
+        </HeadLayout>
     );
 };
 

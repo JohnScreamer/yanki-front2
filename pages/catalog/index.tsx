@@ -19,6 +19,7 @@ import { isPropNull } from "../../utiles/isPropNull";
 import * as cookie from "cookie";
 import { setFavorite, setProfile } from "../../Redux/Slice/Profile";
 import { api } from "../../service/axiosApiRequest/api";
+import HeadLayout from "../../components/layouts/HeadLayout";
 type CatalogType = {
     data: AllGames;
 };
@@ -59,37 +60,39 @@ const catalog: FC<CatalogType> = ({ data }) => {
     const [filter, setFilter] = useState<AllFiltersType>(router.query);
 
     return (
-        <>
-            <div className="Container">
-                <Scrumbs arrName={urlName} />
-            </div>
-            <div className="Container mx-auto">
-                <div className="flex md:flex-row flex-col">
-                    <aside className=" md:w-[180px]  w-full  pr-[0px] md:pr-[5px] ">
-                        <Aside filter={filter} fn={setFilter} />
-                    </aside>
-                    <div className=" flex flex-col w-full">
-                        <Filters filter={filter} fn={setFilter} />
-                        <Pagination
-                            count={amount}
-                            page={+currentPage}
-                            fn={(page) =>
-                                router.push({
-                                    pathname: "/catalog",
-                                    query: { ...isPropNull(filter), page },
-                                })
-                            }
-                        >
-                            <ul className="flex  flex-wrap  m-[-7.5px] ">
-                                {games.map((el) => (
-                                    <Card key={el._id} game={el} />
-                                ))}
-                            </ul>
-                        </Pagination>
+        <HeadLayout name="Каталог">
+            <>
+                <div className="Container">
+                    <Scrumbs arrName={urlName} />
+                </div>
+                <div className="Container mx-auto">
+                    <div className="flex md:flex-row flex-col">
+                        <aside className=" md:w-[180px]  w-full  pr-[0px] md:pr-[5px] ">
+                            <Aside filter={filter} fn={setFilter} />
+                        </aside>
+                        <div className=" flex flex-col w-full">
+                            <Filters filter={filter} fn={setFilter} />
+                            <Pagination
+                                count={amount}
+                                page={+currentPage}
+                                fn={(page) =>
+                                    router.push({
+                                        pathname: "/catalog",
+                                        query: { ...isPropNull(filter), page },
+                                    })
+                                }
+                            >
+                                <ul className="flex  flex-wrap  m-[-7.5px] ">
+                                    {games.map((el) => (
+                                        <Card key={el._id} game={el} />
+                                    ))}
+                                </ul>
+                            </Pagination>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
+            </>
+        </HeadLayout>
     );
 };
 

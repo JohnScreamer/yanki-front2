@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Card from "../../components/Cart/Card/Card";
 import Order from "../../components/Cart/Order/Order";
+import HeadLayout from "../../components/layouts/HeadLayout";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { useAppSelector } from "../../Hooks/common";
 import Price from "../../utiles/currency/Currency";
@@ -12,16 +13,18 @@ const Cart: FC<CartType> = () => {
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
 
     return (
-        <div className="Container mx-auto">
-            <Scrumbs arrName={urlName} />
-            <ul className="md:mb-[30px] mb-[15px] font-">{cartList}</ul>
-            <div>
-                <div className="gap-3 flex justify-end">
-                    <span>До оплати:</span> <Price price={totalPrice} />
+        <HeadLayout name="Корзина">
+            <div className="Container mx-auto">
+                <Scrumbs arrName={urlName} />
+                <ul className="md:mb-[30px] mb-[15px] font-">{cartList}</ul>
+                <div>
+                    <div className="gap-3 flex justify-end">
+                        <span>До оплати:</span> <Price price={totalPrice} />
+                    </div>
                 </div>
+                <Order />
             </div>
-            <Order />
-        </div>
+        </HeadLayout>
     );
 };
 
