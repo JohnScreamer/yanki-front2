@@ -23,16 +23,6 @@ export const getServerSideProps: GetServerSideProps =
     });
 
 const Home: FC<HomeType> = ({ data }) => {
-    const profile = useAppSelector((state) => state.profile);
-    console.log(profile);
-    const fn = async () => {
-        const data = await api().apiReq.authMe();
-        console.log(data, "here");
-    };
-    useEffect(() => {
-        fn();
-    }, []);
-    console.log(getCookie("auth"));
     return (
         <HeadLayout name="Головна">
             <div>
