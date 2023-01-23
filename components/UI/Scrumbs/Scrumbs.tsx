@@ -20,7 +20,7 @@ const Scrumbs: FC<ScrumbsType> = ({ arrName }) => {
     return (
         <>
             <nav className="mb-4">
-                <ul className="flex">
+                <ul className="flex flex-wrap">
                     {arr.map((el, i) => {
                         if (i + 1 === arr.length) {
                             return (
