@@ -12,11 +12,14 @@ import { api } from "../service/axiosApiRequest/api";
 import { GetServerSidePropsContext } from "next";
 import { parseCookies } from "nookies";
 import { Toaster } from "react-hot-toast";
+import { getCookie } from "cookies-next";
 
 function MyApp({ Component, ...rest }: AppProps) {
     const { store, props } = wrapper.useWrappedStore(rest);
 
     useEffect(() => {
+        console.log(getCookie("auth"));
+
         const html = document.querySelector("html");
         if (html) {
             html.style.overflowY = "scroll";
