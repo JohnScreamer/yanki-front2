@@ -19,7 +19,7 @@ function MyApp({ Component, ...rest }: AppProps) {
 
     useEffect(() => {
         
-
+        
         const html = document.querySelector("html");
         if (html) {
             html.style.overflowY = "scroll";
