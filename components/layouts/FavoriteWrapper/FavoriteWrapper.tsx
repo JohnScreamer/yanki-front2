@@ -6,7 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Game } from "../../../Types/gameType";
 import ColorlessBtn from "../../UI/Buttons/ColorlessBtn/ColorlessBtn";
 import { useFavorite } from "../../../Hooks/useFavorite";
-
+import s from "./index.module.scss";
 type FavoriteType = {
     data: Game;
     card?: boolean;
@@ -19,11 +19,14 @@ const FavoriteWrapper: FC<FavoriteType> = ({ data, card }) => {
         return (
             <>
                 {isFavorite ? (
-                    <FavoriteIcon onClick={handlerOnClick} fill="#E0BEA2" />
+                    <FavoriteIcon
+                        onClick={handlerOnClick}
+                        className={s.color}
+                    />
                 ) : (
                     <FavoriteBorderIcon
                         onClick={handlerOnClick}
-                        fill="#E0BEA2"
+                        className={s.color}
                     />
                 )}
             </>

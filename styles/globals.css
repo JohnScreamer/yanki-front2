@@ -9,9 +9,6 @@ html {
 body,
 html {
     height: 100%;
-    svg {
-        fill: red;
-    }
 }
 #__next {
     height: 100%;
