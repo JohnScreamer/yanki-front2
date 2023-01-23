@@ -19,16 +19,11 @@ const FavoriteWrapper: FC<FavoriteType> = ({ data, card }) => {
         return (
             <>
                 {isFavorite ? (
-                    <FavoriteIcon
-                        onClick={handlerOnClick}
-                        className="fill-white"
-                        fill="white"
-                    />
+                    <FavoriteIcon onClick={handlerOnClick} fill="#E0BEA2" />
                 ) : (
                     <FavoriteBorderIcon
-                        fill="white"
                         onClick={handlerOnClick}
-                        className="fill-red-600"
+                        fill="#E0BEA2"
                     />
                 )}
             </>

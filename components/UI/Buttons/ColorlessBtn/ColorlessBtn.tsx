@@ -19,7 +19,10 @@ const ColorlessBtn: FC<ColorlessBtnType> = ({
             onClick={fn}
         >
             {active ? (
-                <FavoriteIcon className="fill-accent-light mr-3 w-[15px] h-[15px]" />
+                <FavoriteIcon
+                    className="fill-accent-light mr-3 w-[15px] h-[15px]"
+                    fill="#E0BEA2"
+                />
             ) : (
                 <svg
                     width="15"
