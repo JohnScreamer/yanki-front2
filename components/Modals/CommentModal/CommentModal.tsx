@@ -49,7 +49,7 @@ const CommentModal: FC<CommentModalType> = ({
     const [addComment, { isError, isLoading: load, data, error }] =
         useAddCommentMutation();
     if (load) {
-        toast.loading("Загрузка...");
+        toast.loading("Загрузка...", { icon: "⌛" });
     }
     const {
         handleSubmit,
