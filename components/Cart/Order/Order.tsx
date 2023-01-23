@@ -9,6 +9,7 @@ import { usePostNewOrderMutation } from "../../../service/api/game";
 import PopUp from "../../PopUp/PopUp";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import Loader from "../../UI/Loader/Loader";
 type Inputs = {
     email: string;
     phone: string;
@@ -52,11 +53,7 @@ const Order: FC<OrderType> = () => {
     });
     const [newOrder, { isLoading: newOrderLoading, isError, data, isSuccess }] =
         usePostNewOrderMutation();
-    const firstRender = useRef(true);
-    if (newOrderLoading) {
-        firstRender.current && toast("Загрузка...", { icon: "⌛" });
-        firstRender.current = false;
-    }
+
     useEffect(() => {
         if (isError) {
             console.log(isError);
@@ -211,6 +208,7 @@ const Order: FC<OrderType> = () => {
             /> */}
 
             <OrderInfo totalPrice={totalPrice} />
+            <Loader />
         </form>
     );
 };

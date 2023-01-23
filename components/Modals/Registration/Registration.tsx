@@ -43,9 +43,7 @@ const Registration: FC<RegistrationType> = () => {
         userRegistration,
         { isError, isLoading: load, isSuccess, data, error },
     ] = useUserRegistrationMutation();
-    if (load) {
-        toast.loading("Загрузка...", { icon: "⌛" });
-    }
+
     const router = useRouter();
     const dispatch = useAppDispatch();
     useEffect(() => {

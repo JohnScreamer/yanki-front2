@@ -46,9 +46,7 @@ const Authorization: FC<AuthorizationType> = () => {
         getFavTrigger,
         { data: favData, isSuccess: isSuccessFav, isError: favError },
     ] = useLazyGetFavoriteQuery();
-    if (load) {
-        toast.loading("Загрузка...", { icon: "⌛" });
-    }
+
     useEffect(() => {
         if (isSuccess && data?.response) {
             dispatch(setProfile(data.response));
