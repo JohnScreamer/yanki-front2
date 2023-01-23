@@ -37,10 +37,10 @@ function MyApp({ Component, ...rest }: AppProps) {
 MyApp.getInitialProps = wrapper.getInitialAppProps(
     (store) =>
         async ({ Component, ctx }: AppContext) => {
+            console.log("start");
             try {
                 const profile = await api(ctx).apiReq.authMe();
                 console.log(profile);
-                console.log('start')
 
                 if (profile) {
                     store.dispatch(setProfile(profile.data.data));
