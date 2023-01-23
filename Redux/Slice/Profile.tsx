@@ -4,7 +4,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { ProfileType } from "../../Types/authTypes";
 import { Game } from "../../Types/gameType";
 
-interface IInitialState {
+ interface IInitialState {
     isAuth: boolean;
     favorite: Array<Game>;
     profile: ProfileType | null;

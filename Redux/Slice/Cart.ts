@@ -6,7 +6,7 @@ export interface CartItem extends Game {
     amount: number;
     totalPrice: number;
 }
-interface IInitialState {
+export interface IInitialState {
     cart: Array<CartItem>;
     totalPrice: number;
     amount: number;
@@ -40,6 +40,7 @@ const Cart = createSlice({
                           }
                         : el
                 );
+                localStorage.setItem("cart", JSON.stringify(state));
                 return;
             }
             state.cart.push({
@@ -47,6 +48,7 @@ const Cart = createSlice({
                 totalPrice: action.payload.price,
                 amount: 1,
             });
+            localStorage.setItem("cart", JSON.stringify(state));
         },
         removeAllGameCopy(state, action: PayloadAction<string>) {
             state.orderCart = state.orderCart.filter(
@@ -59,6 +61,7 @@ const Cart = createSlice({
             }
 
             state.cart = state.cart.filter((el) => el._id !== action.payload);
+            localStorage.setItem("cart", JSON.stringify(state));
         },
         removeGame(state, action: PayloadAction<Game>) {
             let hasInOrderCart = true;
@@ -69,12 +72,14 @@ const Cart = createSlice({
                 }
                 return true;
             });
+            localStorage.setItem("cart", JSON.stringify(state));
             state.amount -= 1;
             state.totalPrice -= action.payload.price;
 
             const hasInCart = state.cart.find(
                 (el) => el._id === action.payload._id
             );
+            localStorage.setItem("cart", JSON.stringify(state));
             if (!hasInCart) {
                 return;
             }
@@ -93,10 +98,18 @@ const Cart = createSlice({
             state.cart = state.cart.filter(
                 (el) => el._id !== action.payload._id
             );
+            localStorage.setItem("cart", JSON.stringify(state));
+        },
+        setCartState(state, action: PayloadAction<IInitialState>) {
+            state.amount = action.payload.amount;
+            state.cart = action.payload.cart;
+            state.orderCart = action.payload.orderCart;
+            state.totalPrice = action.payload.totalPrice;
         },
     },
     extraReducers: {},
 });
 
 export default Cart.reducer;
-export const { addGame, removeGame, removeAllGameCopy } = Cart.actions;
+export const { addGame, removeGame, removeAllGameCopy, setCartState } =
+    Cart.actions;

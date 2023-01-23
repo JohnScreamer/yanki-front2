@@ -5,19 +5,15 @@ import { Game } from "../../Types/gameType";
 import cookie from "nookies";
 type Theme = "light" | "dark";
 export type Currency = "USD$" | "UA₴";
-interface IInitialState {
+export interface IInitialState {
     isBurgerActive: boolean;
     theme: Theme;
     currency: Currency;
-
-    favorite: Array<Game>;
 }
-const initialState: IInitialState = {
+ const initialState: IInitialState = {
     isBurgerActive: false,
     theme: "dark",
     currency: "UA₴",
-
-    favorite: [],
 };
 
 const Common = createSlice({
@@ -29,14 +25,21 @@ const Common = createSlice({
         },
         setTheme(state, action: PayloadAction<Theme>) {
             state.theme = action.payload;
-            cookie.set(undefined, "theme", action.payload);
+            cookie.set(undefined, "theme", JSON.stringify(state));
+            localStorage.setItem("common", JSON.stringify(state));
         },
         setCurrency(state, action: PayloadAction<Currency>) {
             state.currency = action.payload;
+            localStorage.setItem("common", JSON.stringify(state));
+        },
+        setCommonState(state, action: PayloadAction<IInitialState>) {
+            state.theme = action.payload.theme;
+            state.currency = action.payload.currency;
         },
     },
     extraReducers: {},
 });
 
 export default Common.reducer;
-export const { setBurgerStatus, setTheme, setCurrency } = Common.actions;
+export const { setBurgerStatus, setTheme, setCurrency, setCommonState } =
+    Common.actions;

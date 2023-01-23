@@ -1,25 +1,33 @@
 import "../styles/globals.css";
 import type { AppContext, AppProps } from "next/app";
 import { wrapper } from "../Redux/store";
-import { Provider } from "react-redux";
 import Layout from "../components/layouts/Layout";
 import { useEffect } from "react";
 import NextNProgress from "nextjs-progressbar";
-import AuthWrapper from "../components/layouts/AuthWrapper";
-import Cookies from "js-cookie";
 import { setFavorite, setProfile } from "../Redux/Slice/Profile";
 import { api } from "../service/axiosApiRequest/api";
-import { GetServerSidePropsContext } from "next";
-import { parseCookies } from "nookies";
+
 import { Toaster } from "react-hot-toast";
-import { getCookie } from "cookies-next";
+import { useAppDispatch } from "../Hooks/common";
+import {
+    IInitialState as CommonInit,
+    setCommonState,
+} from "../Redux/Slice/Common";
+import { IInitialState, setCartState } from "../Redux/Slice/Cart";
 
 function MyApp({ Component, ...rest }: AppProps) {
     const { store, props } = wrapper.useWrappedStore(rest);
-
+    const dispatch = useAppDispatch();
     useEffect(() => {
-        
-        
+        const common = localStorage.getItem("common");
+        const cart = localStorage.getItem("cart");
+        if (common) {
+            dispatch(setCommonState(JSON.parse(common) as CommonInit));
+        }
+        if (cart) {
+            dispatch(setCartState(JSON.parse(cart) as IInitialState));
+        }
+
         const html = document.querySelector("html");
         if (html) {
             html.style.overflowY = "scroll";
@@ -42,7 +50,6 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
         async ({ Component, ctx }: AppContext) => {
             try {
                 const profile = await api(ctx).apiReq.authMe();
-                console.log(profile);
 
                 if (profile) {
                     store.dispatch(setProfile(profile.data.data));

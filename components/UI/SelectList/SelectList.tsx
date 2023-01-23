@@ -79,7 +79,7 @@ const SelectList: FC<SelectListType> = ({
                 </button>
                 {listStatus && (
                     <ul
-                        className={`flex flex-col gap-[10px] py-[10px] px-2 z-30 animate-swingBottom 
+                        className={`flex flex-col min-w-[120px] gap-[10px] py-[10px] px-2 z-30 animate-swingBottom 
                              ${
                                  relative ? "relative" : "absolute"
                              }  left-0 bg-white dark:bg-main2-dark ${

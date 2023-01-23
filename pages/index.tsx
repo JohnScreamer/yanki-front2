@@ -9,6 +9,7 @@ import Subscribe from "../components/Home/Subscribe/Subscribe";
 import { useAppSelector } from "../Hooks/common";
 import { getCookie } from "cookies-next";
 import { api } from "../service/axiosApiRequest/api";
+import Cookies from "js-cookie";
 
 type HomeType = {
     data: any;
@@ -23,6 +24,8 @@ export const getServerSideProps: GetServerSideProps =
     });
 
 const Home: FC<HomeType> = ({ data }) => {
+    (function () {})();
+
     return (
         <HeadLayout name="Головна">
             <div>
