@@ -7,6 +7,7 @@ import HeadLayout from "../components/layouts/HeadLayout";
 import Categories from "../components/Home/Categories";
 import Subscribe from "../components/Home/Subscribe/Subscribe";
 import { useAppSelector } from "../Hooks/common";
+import { getCookie } from "cookies-next";
 
 type HomeType = {
     data: any;
@@ -23,7 +24,7 @@ export const getServerSideProps: GetServerSideProps =
 const Home: FC<HomeType> = ({ data }) => {
     const profile = useAppSelector((state) => state.profile);
     console.log(profile);
-
+    console.log(getCookie("auth"));
     return (
         <HeadLayout name="Головна">
             <div>

@@ -18,7 +18,7 @@ function MyApp({ Component, ...rest }: AppProps) {
     const { store, props } = wrapper.useWrappedStore(rest);
 
     useEffect(() => {
-        console.log(getCookie("auth"));
+        
 
         const html = document.querySelector("html");
         if (html) {
