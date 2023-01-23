@@ -56,11 +56,9 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
 
             return {
                 pageProps: {
-                    pageProps: {
-                        ...(Component.getInitialProps
-                            ? await Component.getInitialProps({ ...ctx, store })
-                            : {}),
-                    },
+                    ...(Component.getInitialProps
+                        ? await Component.getInitialProps({ ...ctx, store })
+                        : {}),
                 },
             };
         }
