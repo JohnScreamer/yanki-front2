@@ -40,6 +40,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
             try {
                 const profile = await api(ctx).apiReq.authMe();
                 console.log(profile);
+                console.log('start')
 
                 if (profile) {
                     store.dispatch(setProfile(profile.data.data));

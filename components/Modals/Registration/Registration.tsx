@@ -55,7 +55,6 @@ const Registration: FC<RegistrationType> = () => {
         delete newRoute.registration;
         router.push({ query: { ...newRoute } });
     };
-    console.log(data?.token);
 
     if (isSuccess && data?.token) {
         data?.token && Cookies.set("auth", data?.token);
