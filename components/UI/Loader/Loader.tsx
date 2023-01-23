@@ -4,7 +4,8 @@ type LoaderType = {};
 
 const Loader: FC<LoaderType> = () => {
     return (
-        <div className="fixed bottom-14 left-1/2">
+        <div className="fixed bottom-14 left-1/2 z-[1000]">
+            zxc
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
