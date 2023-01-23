@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../../Hooks/common";
 import Input from "../../UI/Input/Input";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -52,8 +52,10 @@ const Order: FC<OrderType> = () => {
     });
     const [newOrder, { isLoading: newOrderLoading, isError, data, isSuccess }] =
         usePostNewOrderMutation();
+    const firstRender = useRef(true);
     if (newOrderLoading) {
-        toast.loading("Загрузка...", { icon: "⌛" });
+        firstRender.current && toast("Загрузка...", { icon: "⌛" });
+        firstRender.current = false;
     }
     useEffect(() => {
         if (isError) {
