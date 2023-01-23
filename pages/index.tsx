@@ -27,7 +27,7 @@ const Home: FC<HomeType> = ({ data }) => {
     console.log(profile);
     const fn = async () => {
         const data = await api().apiReq.authMe();
-        console.log(data);
+        console.log(data, "here");
     };
     useEffect(() => {
         fn();
