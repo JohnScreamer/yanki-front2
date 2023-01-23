@@ -19,7 +19,9 @@ export const Slider = ({ list }: { list: any }) => {
             scrollbar={{ draggable: true }}
             navigation
             className="mySwiper"
-            style={{ padding: "10px 0px" }}
+            style={{
+                padding: "10px 0px",
+            }}
             role={"slider"}
         >
             {list}
