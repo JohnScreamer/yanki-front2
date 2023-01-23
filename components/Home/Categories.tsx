@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FC } from "react";
-import s from "./Categories.module.scss";
 import ps5 from "./../../public/img/ps5.webp";
 import ps4 from "./../../public/img/ps4.webp";
 import comp from "./../../public/img/comp.webp";

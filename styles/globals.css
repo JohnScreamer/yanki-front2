@@ -42,7 +42,7 @@ html {
     margin-right: 20px;
 }
 .swiper-button-next::after {
-    content: url("./../public/svg/arrowRight.svg") !important;
+    content: url("./../public/svg/favorite.svg") !important;
     position: relative;
     top: -3px;
     left: 0px;
