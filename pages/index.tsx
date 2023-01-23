@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import HeadLayout from "../components/layouts/HeadLayout";
 import Categories from "../components/Home/Categories";
 import Subscribe from "../components/Home/Subscribe/Subscribe";
+import { useAppSelector } from "../Hooks/common";
 
 type HomeType = {
     data: any;
@@ -20,6 +21,9 @@ export const getServerSideProps: GetServerSideProps =
     });
 
 const Home: FC<HomeType> = ({ data }) => {
+    const profile = useAppSelector((state) => state.profile);
+    console.log(profile);
+
     return (
         <HeadLayout name="Головна">
             <div>
