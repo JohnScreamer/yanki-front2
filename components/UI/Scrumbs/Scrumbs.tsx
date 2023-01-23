@@ -25,7 +25,7 @@ const Scrumbs: FC<ScrumbsType> = ({ arrName }) => {
                         if (i + 1 === arr.length) {
                             return (
                                 <li
-                                    className="flex items-center font-semibold"
+                                    className="inline-flex items-center font-semibold"
                                     key={arrName[i]}
                                 >
                                     <span className="inline-block mr-1">
@@ -37,7 +37,7 @@ const Scrumbs: FC<ScrumbsType> = ({ arrName }) => {
 
                         return (
                             <li
-                                className="flex items-center hover:underline"
+                                className="inline-flex items-center hover:underline"
                                 key={arrName[i]}
                             >
                                 <span className="inline-block mr-1">
