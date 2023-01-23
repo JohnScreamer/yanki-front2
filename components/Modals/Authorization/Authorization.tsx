@@ -46,6 +46,9 @@ const Authorization: FC<AuthorizationType> = () => {
         getFavTrigger,
         { data: favData, isSuccess: isSuccessFav, isError: favError },
     ] = useLazyGetFavoriteQuery();
+    if (load) {
+        toast.loading("Загрузка...");
+    }
     useEffect(() => {
         if (isSuccess && data?.response) {
             dispatch(setProfile(data.response));
@@ -93,6 +96,7 @@ const Authorization: FC<AuthorizationType> = () => {
         },
         resolver: yupResolver(schema),
     });
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         userLogin(data);
     };
@@ -132,7 +136,6 @@ const Authorization: FC<AuthorizationType> = () => {
                     />
                 )}
             />
-            {/* <ShowError error={error} isError={isError} /> */}
 
             <div className="flex justify-between items-center max-[768px]:text-sm">
                 <button

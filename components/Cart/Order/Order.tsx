@@ -52,6 +52,9 @@ const Order: FC<OrderType> = () => {
     });
     const [newOrder, { isLoading: newOrderLoading, isError, data, isSuccess }] =
         usePostNewOrderMutation();
+    if (newOrderLoading) {
+        toast.loading("Загрузка...");
+    }
     useEffect(() => {
         if (isError) {
             console.log(isError);

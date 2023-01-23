@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { useAppSelector } from "../../../Hooks/common";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
 import ShowError from "../../PopUp/ShowErrorPopUp";
+import toast from "react-hot-toast";
 const schema = yup
     .object({
         rating: yup
@@ -47,6 +48,9 @@ const CommentModal: FC<CommentModalType> = ({
 
     const [addComment, { isError, isLoading: load, data, error }] =
         useAddCommentMutation();
+    if (load) {
+        toast.loading("Загрузка...");
+    }
     const {
         handleSubmit,
         formState: { errors, isLoading },
@@ -69,6 +73,7 @@ const CommentModal: FC<CommentModalType> = ({
                 user: userID,
             });
             setVisibleCommentModal(false);
+            toast.success("Відгук добавлено");
         }
     };
     return (
