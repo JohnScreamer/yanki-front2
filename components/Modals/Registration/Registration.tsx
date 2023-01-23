@@ -17,6 +17,7 @@ import { setProfile } from "../../../Redux/Slice/Profile";
 import { useRouter } from "next/router";
 import ShowError from "../../PopUp/ShowErrorPopUp";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 const schema = yup
     .object({
         email: yup
@@ -54,8 +55,13 @@ const Registration: FC<RegistrationType> = () => {
         delete newRoute.registration;
         router.push({ query: { ...newRoute } });
     };
-    if (isSuccess) {
+    console.log(data?.token);
+
+    if (isSuccess && data?.token) {
         data?.token && Cookies.set("auth", data?.token);
+        toast(`Привіт! Вдалих покупок.`, {
+            icon: "👏",
+        });
         goBack();
     }
     const {
