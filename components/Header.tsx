@@ -42,10 +42,10 @@ const Header = () => {
                             <Link href={"/catalog"}>КАТАЛОГ</Link>
                         </li>
                         <li className="center mr-6 hover:text-accent-light dark:hover:text-accent75-dark duration-300">
-                            <Link href={"/"}>ПРО НАС</Link>
+                            <Link href={"/about"}>ПРО НАС</Link>
                         </li>
                         <li className="center hover:text-accent-light dark:hover:text-accent75-dark duration-300">
-                            <Link href={"/"}>ДОСТАВКА</Link>
+                            <Link href={"/delivery"}>ДОСТАВКА</Link>
                         </li>
                     </ul>
                 </nav>

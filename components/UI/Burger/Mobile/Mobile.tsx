@@ -41,6 +41,9 @@ const Mobile: FC<MobileType> = () => {
     const handlerSetTheme = (theme: "light" | "dark") => {
         dispatch(setTheme(theme));
     };
+    const handlerCloseBurger = () => {
+        dispatch(setBurgerStatus(false));
+    };
     return (
         <div
             className={` h-full w-full mt-[50px]   animate-slide    ${
@@ -81,33 +84,42 @@ const Mobile: FC<MobileType> = () => {
                                 Особистий кабінет
                             </div>
                         </li>
-                        <li
-                            className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                isMain
-                                    ? "border-white  "
-                                    : "border-prime-light dark:border-text-dark"
-                            } w-full text-center`}
-                        >
-                            <Link href={""}>Оплата і доasdasdставка</Link>
-                        </li>
-                        <li
-                            className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                isMain
-                                    ? "border-white  "
-                                    : "border-prime-light dark:border-text-dark"
-                            } w-full text-center`}
-                        >
-                            <Link href={""}>Умови</Link>
-                        </li>
-                        <li
-                            className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                isMain
-                                    ? "border-white  "
-                                    : "border-prime-light dark:border-text-dark"
-                            } w-full text-center`}
-                        >
-                            <Link href={""}>Контакти</Link>
-                        </li>
+                        <Link href={"/delivery"}>
+                            <li
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${
+                                    isMain
+                                        ? "border-white  "
+                                        : "border-prime-light dark:border-text-dark"
+                                } w-full text-center`}
+                                onClick={handlerCloseBurger}
+                            >
+                                Оплата і доставка
+                            </li>
+                        </Link>
+                        <Link href={"/about"}>
+                            <li
+                                onClick={handlerCloseBurger}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${
+                                    isMain
+                                        ? "border-white  "
+                                        : "border-prime-light dark:border-text-dark"
+                                } w-full text-center`}
+                            >
+                                Про нас
+                            </li>
+                        </Link>
+                        <Link href={""}>
+                            <li
+                                onClick={handlerCloseBurger}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${
+                                    isMain
+                                        ? "border-white  "
+                                        : "border-prime-light dark:border-text-dark"
+                                } w-full text-center`}
+                            >
+                                Контакти
+                            </li>
+                        </Link>
                         <li
                             className={`py-5 cursor-pointer border-y-[0.5px] ${
                                 isMain

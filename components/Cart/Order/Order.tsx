@@ -57,11 +57,11 @@ const Order: FC<OrderType> = () => {
     useEffect(() => {
         if (isError) {
             console.log(isError);
-            toast.error("This didn't work.");
+            toast.error("Щось пішло не так.");
         }
         if (isSuccess) {
             route.replace({ query: { orderDone: true } });
-            toast("success.");
+            toast("Успішно замовлено.");
             reset();
         }
     }, [isError, isSuccess]);

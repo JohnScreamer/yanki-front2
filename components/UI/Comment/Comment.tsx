@@ -21,6 +21,7 @@ import {
 } from "../../../service/api/game";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useRouter } from "next/router";
+import Loader from "../Loader/Loader";
 type Inputs = {
     rating: number;
     text: string;
@@ -197,6 +198,7 @@ const Comment: FC<Comment> = ({ comment }) => {
                         )}
                     </>
                 )}
+                {load && <Loader />}
             </form>
         </ClickAwayListener>
     );

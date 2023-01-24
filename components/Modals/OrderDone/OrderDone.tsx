@@ -17,7 +17,7 @@ const OrderDone: FC<OrderDoneType> = () => {
                 вкладки мої замовлення!
             </p>
             <DefaultBtn>
-                <Link href={"/"}>Мої замовлення</Link>
+                <Link href={"/cabinet/orders"}>Мої замовлення</Link>
             </DefaultBtn>
         </div>
     );

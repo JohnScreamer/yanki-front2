@@ -66,9 +66,9 @@ const DropList: FC<DropListType> = ({
                     onClick={handlerToggleOnclick}
                     className={`flex    items-center w-full ${
                         center ? "justify-center" : "justify-between"
-                    } text-base relative`}
+                    } text-base relative `}
                 >
-                    <div className="flex   items-center pt-[10px] relative">
+                    <div className="flex mx-auto  items-center pt-[10px] relative">
                         <span
                             className={`mr-2 text-base ${
                                 capitalize ? "" : "uppercase"

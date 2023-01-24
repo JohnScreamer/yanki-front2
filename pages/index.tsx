@@ -24,7 +24,6 @@ export const getServerSideProps: GetServerSideProps =
     });
 
 const Home: FC<HomeType> = ({ data }) => {
-    (function () {})();
 
     return (
         <HeadLayout name="Головна">

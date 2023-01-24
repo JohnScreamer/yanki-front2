@@ -22,10 +22,10 @@ const Desktop: FC<DesktopType> = () => {
                 <nav className="">
                     <ul className="uppercase flex gap-6">
                         <li className="hover:text-accent-light dark:hover:text-accent75-dark">
-                            <Link href={""}>Оплата і доставка</Link>
+                            <Link href={"/delivery"}>Оплата і доставка</Link>
                         </li>
                         <li className="hover:text-accent-light dark:hover:text-accent75-dark">
-                            <Link href={""}>Умови</Link>
+                            <Link href={"/about"}>Про нас</Link>
                         </li>
                         <li className="hover:text-accent-light dark:hover:text-accent75-dark">
                             <Link href={""}>Контакти</Link>

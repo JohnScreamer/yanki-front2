@@ -11,7 +11,7 @@ export const api = (
     const cookies = ctx ? Cookies.get(ctx) : parseCookies();
     const token = cookies.auth;
     const instance = axios.create({
-        baseURL: "https://yankisli.herokuapp.com", //https://johnscreamer-yanki-back.onrender.com http://localhost:4000
+        baseURL: "https://yankisli.herokuapp.com", //https://yankisli.herokuapp.com
         headers: {
             authorization: token,
         },

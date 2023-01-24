@@ -29,7 +29,7 @@ const MainHeaderWrapper: FC<MainHeaderWrapperType> = ({ children }) => {
             {/* <Image src={picture} layout="fill" objectFit="cover" /> */}
 
             <div className="flex  h-screen absolute w-screen top-0 left-0   ">
-                <div className="group  h-full relative  scale-105    hover:grayscale-0 duration-300 w-full">
+                <div className="group  h-full relative  scale-105    hover:grayscale-0 duration-300  md:w-[52%] w-full">
                     <MouseParallax
                         shouldPause
                         strength={0.02}
@@ -45,7 +45,7 @@ const MainHeaderWrapper: FC<MainHeaderWrapperType> = ({ children }) => {
                         </div>
                     </MouseParallax>
                 </div>
-                <div className="group  h-full relative  scale-105 md:block hidden    hover:grayscale-0 duration-300 w-full">
+                <div className="group  h-full relative  scale-105 md:block hidden    hover:grayscale-0 duration-300 w-[48%]">
                     <MouseParallax
                         shouldPause
                         strength={0.02}

@@ -50,9 +50,9 @@ const orders: FC<ordersType> = ({ data }) => {
             </div>
         );
     }
-    const list = data.data.map((el) => (
-        <CardList data={el} key={el.createdAt} />
-    ));
+    const list = data.data
+        .reverse()
+        .map((el) => <CardList data={el} key={el.createdAt} />);
 
     return (
         <HeadLayout name="Замовлення">

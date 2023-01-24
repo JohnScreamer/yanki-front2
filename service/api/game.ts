@@ -23,7 +23,7 @@ export const gameApi = createApi({
     reducerPath: "gameApi",
     tagTypes: ["Favorite", "Comment", "Rating"],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://yankisli.herokuapp.com", //https://johnscreamer-yanki-back.onrender.com http://localhost:4000
+        baseUrl: "https://yankisli.herokuapp.com", //https://yankisli.herokuapp.com  http://localhost:4000
         credentials: "include",
     }),
     extractRehydrationInfo(action, { reducerPath }) {
