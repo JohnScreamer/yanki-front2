@@ -56,7 +56,7 @@ const MainHeaderWrapper: FC<MainHeaderWrapperType> = ({ children }) => {
                                 src={picture3}
                                 layout="fill"
                                 objectFit="cover"
-                                className="object-left  duration-300 transition-transform"
+                                className="  object-[-265px]  duration-300 transition-transform"
                             />
                         </div>
                     </MouseParallax>

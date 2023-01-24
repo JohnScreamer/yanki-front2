@@ -70,7 +70,7 @@ const DropList: FC<DropListType> = ({
                 >
                     <div className="flex mx-auto  items-center pt-[10px] relative">
                         <span
-                            className={`mr-2 text-base ${
+                            className={`mr-5 text-base ${
                                 capitalize ? "" : "uppercase"
                             }   text-base2-light dark:text-main-light`}
                         >
