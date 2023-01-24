@@ -63,7 +63,7 @@ const Order: FC<OrderType> = () => {
             console.log(isError);
             toast.error("Щось пішло не так.");
         }
-        if (isSuccess) {
+        if (isSuccess && data?.status === "ok") {
             route.replace({ query: { orderDone: true } });
             toast("Успішно замовлено.");
             reset();
