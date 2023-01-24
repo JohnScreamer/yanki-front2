@@ -54,7 +54,7 @@ const Order: FC<OrderType> = () => {
     const [newOrder, { isLoading: newOrderLoading, isError, data, isSuccess }] =
         usePostNewOrderMutation();
     useEffect(() => {
-        if (data?.status !== "ok") {
+        if (data?.status !== "ok" && isSuccess) {
             toast.error("Щось пішло не так.");
         }
     }, [data]);
