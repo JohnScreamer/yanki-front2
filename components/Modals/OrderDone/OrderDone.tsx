@@ -16,9 +16,9 @@ const OrderDone: FC<OrderDoneType> = () => {
                 Для моніторингу замовлення перейдіть в особистий кабінет до
                 вкладки мої замовлення!
             </p>
-            <DefaultBtn>
-                <Link href={"/cabinet/orders"}>Мої замовлення</Link>
-            </DefaultBtn>
+            <Link href={"/cabinet/orders"}>
+                <DefaultBtn>Мої замовлення</DefaultBtn>
+            </Link>
         </div>
     );
 };
