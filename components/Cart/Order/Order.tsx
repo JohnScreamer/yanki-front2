@@ -208,7 +208,7 @@ const Order: FC<OrderType> = () => {
             /> */}
 
             <OrderInfo totalPrice={totalPrice} />
-            <Loader />
+            {newOrderLoading && <Loader />}
         </form>
     );
 };

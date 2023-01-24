@@ -4,8 +4,7 @@ type LoaderType = {};
 
 const Loader: FC<LoaderType> = () => {
     return (
-        <div className="fixed bottom-14 left-1/2 z-[1000]">
-            zxc
+        <div className="fixed top-1/3 left-1/2 z-[1000]">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
@@ -14,8 +13,8 @@ const Loader: FC<LoaderType> = () => {
                     display: "block",
                     shapeRendering: "auto",
                 }}
-                width="172px"
-                height="172px"
+                width="100px"
+                height="100px"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="xMidYMid"
             >
