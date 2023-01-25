@@ -10,7 +10,10 @@ import PlatformList from "../Aside/PlatformList/PlatformList";
 import PublisherList from "../Aside/PublisherList/PublisherList";
 
 type FiltersType = {
-    filter: AllFiltersType;
+    sort: string | undefined;
+    order: string | undefined;
+    platform: string | undefined;
+    publisher: string | undefined;
     fn: Dispatch<SetStateAction<AllFiltersType>>;
     getGamesTrigger: any;
 };
@@ -18,39 +21,52 @@ const priceSort = [
     { value: "1", name: "Спочатку дешевші" },
     { value: "-1", name: "Спочатку дорощі" },
 ];
-const Filters: FC<FiltersType> = ({ filter, fn, getGamesTrigger }) => {
+const Filters: FC<FiltersType> = ({
+    fn,
+    getGamesTrigger,
+    order,
+    platform,
+    sort,
+    publisher,
+}) => {
     const router = useRouter();
-    const showName =
-        filter.order === "1" ? "Спочатку дешевші" : "Спочатку дорощі";
+    const currenParam = router.query;
+    const showName = order === "1" ? "Спочатку дешевші" : "Спочатку дорощі";
     const handlerSort = (value: string) => {
-        fn(isPropNull({ ...filter, order: value, sort: "price" }));
+        fn(isPropNull({ ...currenParam, order: value, sort: "price" }));
         router.push({
             pathname: "/catalog",
-            query: isPropNull({ ...filter, order: value, sort: "price" }),
+            query: isPropNull({ ...currenParam, order: value, sort: "price" }),
         });
         router.push(
             {
                 pathname: "/catalog",
-                query: isPropNull({ ...filter, order: value, sort: "price" }),
+                query: isPropNull({
+                    ...currenParam,
+                    order: value,
+                    sort: "price",
+                }),
             },
             undefined,
             { shallow: true }
         );
-        fn(isPropNull({ ...filter, order: value, sort: "price" }));
-        getGamesTrigger(isPropNull({ ...filter, order: value, sort: "price" }));
+        fn(isPropNull({ ...currenParam, order: value, sort: "price" }));
+        getGamesTrigger(
+            isPropNull({ ...currenParam, order: value, sort: "price" })
+        );
     };
 
     const handlerSetFilter = (value: string, name: FilterKeys) => {
         router.push(
             {
                 pathname: "/catalog",
-                query: isPropNull({ ...filter, [name]: value, page: 1 }),
+                query: isPropNull({ ...currenParam, [name]: value, page: 1 }),
             },
             undefined,
             { shallow: true }
         );
-        fn(isPropNull({ ...filter, [name]: value, page: 1 }));
-        getGamesTrigger(isPropNull({ ...filter, [name]: value, page: 1 }));
+        fn(isPropNull({ ...currenParam, [name]: value, page: 1 }));
+        getGamesTrigger(isPropNull({ ...currenParam, [name]: value, page: 1 }));
     };
 
     return (
@@ -63,19 +79,17 @@ const Filters: FC<FiltersType> = ({ filter, fn, getGamesTrigger }) => {
                             defaultValue="Сортувати по ціні"
                             capitalize
                             absolute
-                            value={
-                                filter.sort === "price" ? showName : undefined
-                            }
+                            value={sort === "price" ? showName : undefined}
                             className="border-none text-base  "
                             fn={(value) => handlerSort(value)}
                         />
                     </div>
                     <PublisherList
                         handlerSetFilter={handlerSetFilter}
-                        publisher={filter.publisher}
+                        publisher={publisher}
                     />
                     <PlatformList
-                        platform={filter.platform}
+                        platform={platform}
                         handlerSetFilter={handlerSetFilter}
                     />
                 </div>
@@ -84,4 +98,4 @@ const Filters: FC<FiltersType> = ({ filter, fn, getGamesTrigger }) => {
     );
 };
 
-export default Filters;
+export default memo(Filters);

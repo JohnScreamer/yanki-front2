@@ -3,20 +3,13 @@ import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import Aside from "../../components/Catalog/Aside/Aside";
 import Filters from "../../components/Catalog/Filters/Filters";
-import Pagination from "../../components/layouts/Pagination/Pagination";
-import Card from "../../components/UI/Card/Card";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
-import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
-import {
-    useGetAllGamesQuery,
-    useLazyGetAllGamesQuery,
-} from "../../service/api/game";
+import { useLazyGetAllGamesQuery } from "../../service/api/game";
 import { AllGames } from "../../Types/gameType";
-import { isPropNull } from "../../utiles/isPropNull";
 import { api } from "../../service/axiosApiRequest/api";
 import HeadLayout from "../../components/layouts/HeadLayout";
 import toast from "react-hot-toast";
-import Loader from "../../components/UI/Loader/Loader";
+import GoodsList from "../../components/Catalog/GoodsList/GoodsList";
 type CatalogType = {
     data: AllGames;
 };
@@ -51,22 +44,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const catalog: FC<CatalogType> = ({ data }) => {
     const [getGamesTrigger, { isLoading, isError, data: newData, error }] =
         useLazyGetAllGamesQuery();
-    const { amount, games } = newData || data || {};
+    const { amount, games } = newData || data || { amount: 0, games: [] };
     const router = useRouter();
-    const currentPage = router.query.page || 1;
     const [filter, setFilter] = useState<AllFiltersType>(router.query);
-    const handlerPagination = (page: number) => {
-        getGamesTrigger({ ...isPropNull(filter), page });
-        router.push(
-            {
-                pathname: "/catalog",
-                query: isPropNull({ ...isPropNull(filter), page }),
-            },
-            undefined,
-            { shallow: true }
-        );
-        setFilter(isPropNull({ ...isPropNull(filter), page }));
-    };
+
     if (isError) {
         toast.error("Упс...Щось пішло не так(.");
     }
@@ -82,36 +63,26 @@ const catalog: FC<CatalogType> = ({ data }) => {
                         <aside className=" md:w-[180px]  w-full  pr-[0px] md:pr-[5px] ">
                             <Aside
                                 filter={filter}
-                                fn={setFilter}
+                                setFilter={setFilter}
                                 getGamesTrigger={getGamesTrigger}
                             />
                         </aside>
                         <div className=" flex flex-col w-full">
                             <Filters
-                                filter={filter}
+                                order={filter.order}
+                                platform={filter.platform}
+                                publisher={filter.publisher}
+                                sort={filter.sort}
                                 getGamesTrigger={getGamesTrigger}
                                 fn={setFilter}
                             />
-                            <Pagination
-                                count={amount}
-                                page={+currentPage}
-                                fn={(page) => handlerPagination(page)}
-                            >
-                                {games.length ? (
-                                    <ul className="flex  flex-wrap  m-[-7.5px] ">
-                                        {games.map((el) => (
-                                            <Card key={el._id} game={el} />
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <div className="flex justify-center items-center flex-col gap-3">
-                                        <h2 className="text-center">
-                                            Нічого не знайдено
-                                        </h2>
-                                        <VideogameAssetOffIcon className="h-[100px] w-[100px]" />
-                                    </div>
-                                )}
-                            </Pagination>
+
+                            <GoodsList
+                                games={games}
+                                amount={amount}
+                                setFilter={setFilter}
+                                getGamesTrigger={getGamesTrigger}
+                            />
                         </div>
                     </div>
                 </div>

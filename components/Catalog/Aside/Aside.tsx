@@ -5,22 +5,14 @@ import { AllFiltersType } from "../../../pages/catalog";
 import { isPropNull } from "../../../utiles/isPropNull";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Input from "../../UI/Input/Input";
-
-type AsideType = {
+import FilterTagList from "./FilterTagList/FilterTagList";
+export type AsideType = {
     filter: AllFiltersType;
-    fn: Dispatch<SetStateAction<AllFiltersType>>;
+    setFilter: Dispatch<SetStateAction<AllFiltersType>>;
     getGamesTrigger: any;
 };
 export type FilterKeys = keyof AllFiltersType;
-const platform = [
-    "PlayStation 5",
-    "PlayStation 4",
-    "PC",
-    "Xbox One",
-    "Nintendo Switch",
-];
-
-const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
+const Aside: FC<AsideType> = ({ filter, setFilter, getGamesTrigger }) => {
     const router = useRouter();
     const handlerSearch = () => {
         router.push(
@@ -31,59 +23,9 @@ const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
             undefined,
             { shallow: true }
         );
-        fn(isPropNull({ ...filter, page: 1 }));
+        setFilter(isPropNull({ ...filter, page: 1 }));
         getGamesTrigger(isPropNull({ ...filter, page: 1 }));
     };
-    const deleteFilterElem = (name: FilterKeys) => {
-        const filtered = { ...filter };
-        delete filtered[name];
-        fn(isPropNull({ ...filtered, page: 1 }));
-        router.push(
-            {
-                pathname: "/catalog",
-                query: isPropNull({ ...filtered, page: 1 }),
-            },
-            undefined,
-            { shallow: true }
-        );
-        getGamesTrigger(isPropNull({ ...filtered, page: 1 }));
-    };
-    const filterList = (Object.keys(filter) as Array<FilterKeys>).map((el) => {
-        if (filter[el] === 0) {
-            return;
-        }
-        if (el === "page" || el === "order") {
-            return;
-        }
-        return (
-            <li
-                key={filter[el]}
-                onClick={() => deleteFilterElem(el)}
-                className="py-1  px-2 text-xs relative hover:border-red-600 cursor-pointer  border-accent2-light dark: border-[1px]  rounded-3xl inline-flex justify-center items-center  "
-            >
-                <span className="mr-2">{filter[el]}</span>
-                <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g clipPath="url(#clip0_344_430)">
-                        <path
-                            d="M12.5 9.72267L22.2227 1.52588e-05L25 2.77736L15.2773 12.5L25 22.2227L22.2227 25L12.5 15.2774L2.77734 25L0 22.2227L9.72266 12.5L0 2.77736L2.77734 1.52588e-05L12.5 9.72267Z"
-                            fill="#E0BEA2"
-                        />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_344_430">
-                            <rect width="25" height="25" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            </li>
-        );
-    });
 
     return (
         <div className="flex flex-col gap-3 mt-[10px] md:mt-[112px] max-[768px]:mt-0 md:pr-2 relative">
@@ -92,7 +34,7 @@ const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
                     <Input
                         placeholder="Назва"
                         value={filter?.name || ""}
-                        fn={(value) => fn({ ...filter, name: value })}
+                        fn={(value) => setFilter({ ...filter, name: value })}
                         padding
                         className="p-2 w-full "
                     />
@@ -112,7 +54,7 @@ const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
                         padding
                         type="number"
                         fn={(value) =>
-                            fn({
+                            setFilter({
                                 ...filter,
                                 ["price[gte]"]: +value,
                             })
@@ -129,7 +71,7 @@ const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
                         padding
                         type="number"
                         fn={(value) =>
-                            fn({
+                            setFilter({
                                 ...filter,
                                 ["price[lte]"]: +value,
                             })
@@ -143,7 +85,11 @@ const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
                     Ок
                 </DefaultBtn>
             </div>
-            <ul className="flex gap-1 flex-wrap">{filterList}</ul>
+            <FilterTagList
+                filter={filter}
+                setFilter={setFilter}
+                getGamesTrigger={getGamesTrigger}
+            />
         </div>
     );
 };
