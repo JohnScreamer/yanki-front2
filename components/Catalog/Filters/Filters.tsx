@@ -12,19 +12,14 @@ import PublisherList from "../Aside/PublisherList/PublisherList";
 type FiltersType = {
     filter: AllFiltersType;
     fn: Dispatch<SetStateAction<AllFiltersType>>;
+    getGamesTrigger: any;
 };
 const priceSort = [
     { value: "1", name: "Спочатку дешевші" },
     { value: "-1", name: "Спочатку дорощі" },
 ];
-const Filters: FC<FiltersType> = ({ filter, fn }) => {
+const Filters: FC<FiltersType> = ({ filter, fn, getGamesTrigger }) => {
     const router = useRouter();
-    const handlerSearch = () => {
-        router.push({
-            pathname: "/catalog",
-            query: isPropNull({ ...filter, page: 1 }),
-        });
-    };
     const showName =
         filter.order === "1" ? "Спочатку дешевші" : "Спочатку дорощі";
     const handlerSort = (value: string) => {
@@ -33,13 +28,29 @@ const Filters: FC<FiltersType> = ({ filter, fn }) => {
             pathname: "/catalog",
             query: isPropNull({ ...filter, order: value, sort: "price" }),
         });
+        router.push(
+            {
+                pathname: "/catalog",
+                query: isPropNull({ ...filter, order: value, sort: "price" }),
+            },
+            undefined,
+            { shallow: true }
+        );
+        fn(isPropNull({ ...filter, order: value, sort: "price" }));
+        getGamesTrigger(isPropNull({ ...filter, order: value, sort: "price" }));
     };
+
     const handlerSetFilter = (value: string, name: FilterKeys) => {
-        fn(isPropNull({ ...filter, [name]: value }));
-        router.push({
-            pathname: "/catalog",
-            query: isPropNull({ ...filter, [name]: value }),
-        });
+        router.push(
+            {
+                pathname: "/catalog",
+                query: isPropNull({ ...filter, [name]: value, page: 1 }),
+            },
+            undefined,
+            { shallow: true }
+        );
+        fn(isPropNull({ ...filter, [name]: value, page: 1 }));
+        getGamesTrigger(isPropNull({ ...filter, [name]: value, page: 1 }));
     };
 
     return (

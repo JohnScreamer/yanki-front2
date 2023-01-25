@@ -25,12 +25,8 @@ const Order: FC<OrderType> = () => {
     const { totalPrice, amount, orderCart } = useAppSelector(
         (state) => state.cart
     );
-    const isWindow = typeof window === "undefined" ? false : true;
-    if (!amount && isWindow) {
-        route.push("/");
-    }
+
     const userDate = useAppSelector((state) => state.profile.profile);
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
     const { email, city, _id, lastName, firstName, postNumber, phone } =
         userDate || {};
 

@@ -1,28 +1,15 @@
-import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import toast from "react-hot-toast";
-import { useAppDispatch } from "../../../Hooks/common";
-import { clearProfile } from "../../../Redux/Slice/Profile";
-
+import { useLogOut } from "../../../Hooks/useLogOut";
 type NavType = {};
-
 const Nav: FC<NavType> = () => {
     const route = useRouter();
     const url = route.asPath;
-    const dispatch = useAppDispatch();
-    const handlerLogout = () => {
-        dispatch(clearProfile());
-        Cookies.remove("auth");
-        route.push("/");
-        toast(`До зустрічі.`, {
-            icon: "👏",
-        });
-    };
+    const logOut = useLogOut();
 
     return (
-        <div className="border-y-[0.3px]  border-accent2-light flex md:flex-row  flex-col  justify-center ">
+        <nav className="border-y-[0.3px]  border-accent2-light flex md:flex-row  flex-col  justify-center ">
             <Link href={"/cabinet/orders"}>
                 <div
                     className={` ${
@@ -50,11 +37,11 @@ const Nav: FC<NavType> = () => {
                 className={` 
                          text-accent-dark dark:text-base-light
                  hover:bg-accent-dark  py-[15px] px-[50px] duration-300 h-full  cursor-pointer`}
-                onClick={handlerLogout}
+                onClick={logOut}
             >
                 Вийти
             </button>
-        </div>
+        </nav>
     );
 };
 

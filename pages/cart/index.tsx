@@ -4,6 +4,7 @@ import Order from "../../components/Cart/Order/Order";
 import HeadLayout from "../../components/layouts/HeadLayout";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { useAppSelector } from "../../Hooks/common";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import Price from "../../utiles/currency/Currency";
 const urlName = ["Головна", "Корзина"];
 type CartType = {};
@@ -16,7 +17,15 @@ const Cart: FC<CartType> = () => {
         <HeadLayout name="Корзина">
             <div className="Container mx-auto ">
                 <Scrumbs arrName={urlName} />
-                <ul className="md:mb-[30px] mb-[15px] font-">{cartList}</ul>
+                {cartItems.length ? (
+                    <ul className="md:mb-[30px] mb-[15px] font-">{cartList}</ul>
+                ) : (
+                    <div className="flex flex-col justify-center items-center">
+                        <h2 className="text center">Корзина пуста!</h2>
+                        <RemoveShoppingCartIcon className="h-[200px] w-[200px]" />
+                    </div>
+                )}
+
                 <div>
                     <div className="gap-3 flex justify-end">
                         <span>До оплати:</span> <Price price={totalPrice} />

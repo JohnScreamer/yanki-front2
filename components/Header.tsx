@@ -80,12 +80,12 @@ const Header = () => {
 
             {isBurgerActive ? (
                 <>
-                    <div className="absolute top-0 md:block hidden left-0  w-full h-full z-30 ">
+                    <div className="absolute top-0 md:block  hidden left-0  w-full h-full z-30 ">
                         <div className="  h-full w-full   backdrop-blur-md ">
                             <Desktop />
                         </div>
                     </div>
-                    <div className="md:hidden block h-screen absolute z-10   w-full">
+                    <div className="md:hidden block h-screen  absolute z-10    w-full">
                         <Mobile />
                     </div>
                 </>

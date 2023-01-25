@@ -7,6 +7,8 @@ import { setBurgerStatus, setTheme } from "../../../../Redux/Slice/Common";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Search from "./Search";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { useLogOut } from "../../../../Hooks/useLogOut";
+import { disabledScroll } from "../../../../utiles/disabledScroll";
 type MobileType = {};
 
 const Mobile: FC<MobileType> = () => {
@@ -14,22 +16,7 @@ const Mobile: FC<MobileType> = () => {
     const dispatch = useAppDispatch();
     const route = useRouter();
     const isAuth = useAppSelector((state) => state.profile.isAuth);
-    const isBurgerActive = useAppSelector(
-        (state) => state.common.isBurgerActive
-    );
-
-    useEffect(() => {
-        if (document.body.clientWidth < 768) {
-            document.body.style.cssText = `
-            height: 100vh;
-            overflow-y: hidden;`;
-        }
-
-        return () => {
-            document.body.style.cssText = ` `;
-        };
-    }, []);
-
+    useEffect(disabledScroll, []);
     const handlerIsAuth = () => {
         if (isAuth) {
             dispatch(setBurgerStatus(false));
@@ -44,13 +31,18 @@ const Mobile: FC<MobileType> = () => {
     const handlerCloseBurger = () => {
         dispatch(setBurgerStatus(false));
     };
+    const logOut = useLogOut();
+    const handlerLogOut = () => {
+        logOut();
+        dispatch(setBurgerStatus(false));
+    };
+    const linkStyle = isMain
+        ? "backdrop-blur-xl"
+        : "bg-white dark:bg-main2-dark border-t-2 dark:border-accent75-dark border-accent-light ";
     return (
         <div
-            className={` h-full w-full mt-[50px]   animate-slide    ${
-                isMain
-                    ? "backdrop-blur-xl"
-                    : "bg-white dark:bg-main2-dark border-t-2 dark:border-accent75-dark border-accent-light "
-            }  `}
+            className={` h-screen w-full mt-[50px]  overflow-y-scroll
+              animate-slide  ${linkStyle}`}
         >
             <div className="flex  h-full w-full   Container   ">
                 <nav className=" w-full">
@@ -58,11 +50,7 @@ const Mobile: FC<MobileType> = () => {
                     <div></div>
                     <ul className="uppercase center flex flex-col w-full mb-20">
                         <li
-                            className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                isMain
-                                    ? "border-white  "
-                                    : "border-prime-light dark:border-text-dark"
-                            } w-full text-center`}
+                            className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                             onClick={handlerIsAuth}
                         >
                             <div className="flex justify-center item-center">
@@ -86,11 +74,7 @@ const Mobile: FC<MobileType> = () => {
                         </li>
                         <Link href={"/delivery"}>
                             <li
-                                className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                    isMain
-                                        ? "border-white  "
-                                        : "border-prime-light dark:border-text-dark"
-                                } w-full text-center`}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                                 onClick={handlerCloseBurger}
                             >
                                 Оплата і доставка
@@ -111,21 +95,13 @@ const Mobile: FC<MobileType> = () => {
                         <Link href={""}>
                             <li
                                 onClick={handlerCloseBurger}
-                                className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                    isMain
-                                        ? "border-white  "
-                                        : "border-prime-light dark:border-text-dark"
-                                } w-full text-center`}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                             >
                                 Контакти
                             </li>
                         </Link>
                         <li
-                            className={`py-5 cursor-pointer border-y-[0.5px] ${
-                                isMain
-                                    ? "border-white  "
-                                    : "border-prime-light dark:border-text-dark"
-                            } w-full text-center`}
+                            className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                         >
                             {theme === "dark" ? (
                                 <button
@@ -146,6 +122,14 @@ const Mobile: FC<MobileType> = () => {
                                 </button>
                             )}
                         </li>
+                        {isAuth ? (
+                            <li
+                                className={`py-5 cursor-pointer border-y-[0.5px] ${linkStyle} w-full text-center`}
+                                onClick={handlerLogOut}
+                            >
+                                Вийти
+                            </li>
+                        ) : null}
                     </ul>
                     <ul className="flex justify-center flex-col items-center my-auto">
                         <li className="flex mb-1 cursor-pointer">

@@ -2,24 +2,21 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import Aside from "../../components/Catalog/Aside/Aside";
-import CatalogWrapper from "../../components/Catalog/CatalogWrapper/CatalogWrapper";
 import Filters from "../../components/Catalog/Filters/Filters";
 import Pagination from "../../components/layouts/Pagination/Pagination";
 import Card from "../../components/UI/Card/Card";
-import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
-import Input from "../../components/UI/Input/Input";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
-import { wrapper } from "../../Redux/store";
+import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import {
     useGetAllGamesQuery,
     useLazyGetAllGamesQuery,
 } from "../../service/api/game";
 import { AllGames } from "../../Types/gameType";
 import { isPropNull } from "../../utiles/isPropNull";
-import * as cookie from "cookie";
-import { setFavorite, setProfile } from "../../Redux/Slice/Profile";
 import { api } from "../../service/axiosApiRequest/api";
 import HeadLayout from "../../components/layouts/HeadLayout";
+import toast from "react-hot-toast";
+import Loader from "../../components/UI/Loader/Loader";
 type CatalogType = {
     data: AllGames;
 };
@@ -52,12 +49,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const catalog: FC<CatalogType> = ({ data }) => {
-    const { amount, games } = data || {};
+    const [getGamesTrigger, { isLoading, isError, data: newData, error }] =
+        useLazyGetAllGamesQuery();
+    const { amount, games } = newData || data || {};
     const router = useRouter();
     const currentPage = router.query.page || 1;
-    const [trigger, { isLoading, isError, data: newData, error }] =
-        useLazyGetAllGamesQuery();
     const [filter, setFilter] = useState<AllFiltersType>(router.query);
+    const handlerPagination = (page: number) => {
+        getGamesTrigger({ ...isPropNull(filter), page });
+        router.push(
+            {
+                pathname: "/catalog",
+                query: isPropNull({ ...isPropNull(filter), page }),
+            },
+            undefined,
+            { shallow: true }
+        );
+        setFilter(isPropNull({ ...isPropNull(filter), page }));
+    };
+    if (isError) {
+        toast.error("Упс...Щось пішло не так(.");
+    }
 
     return (
         <HeadLayout name="Каталог">
@@ -68,25 +80,37 @@ const catalog: FC<CatalogType> = ({ data }) => {
                 <div className="Container mx-auto">
                     <div className="flex md:flex-row flex-col">
                         <aside className=" md:w-[180px]  w-full  pr-[0px] md:pr-[5px] ">
-                            <Aside filter={filter} fn={setFilter} />
+                            <Aside
+                                filter={filter}
+                                fn={setFilter}
+                                getGamesTrigger={getGamesTrigger}
+                            />
                         </aside>
                         <div className=" flex flex-col w-full">
-                            <Filters filter={filter} fn={setFilter} />
+                            <Filters
+                                filter={filter}
+                                getGamesTrigger={getGamesTrigger}
+                                fn={setFilter}
+                            />
                             <Pagination
                                 count={amount}
                                 page={+currentPage}
-                                fn={(page) =>
-                                    router.push({
-                                        pathname: "/catalog",
-                                        query: { ...isPropNull(filter), page },
-                                    })
-                                }
+                                fn={(page) => handlerPagination(page)}
                             >
-                                <ul className="flex  flex-wrap  m-[-7.5px] ">
-                                    {games.map((el) => (
-                                        <Card key={el._id} game={el} />
-                                    ))}
-                                </ul>
+                                {games.length ? (
+                                    <ul className="flex  flex-wrap  m-[-7.5px] ">
+                                        {games.map((el) => (
+                                            <Card key={el._id} game={el} />
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <div className="flex justify-center items-center flex-col gap-3">
+                                        <h2 className="text-center">
+                                            Нічого не знайдено
+                                        </h2>
+                                        <VideogameAssetOffIcon className="h-[100px] w-[100px]" />
+                                    </div>
+                                )}
                             </Pagination>
                         </div>
                     </div>

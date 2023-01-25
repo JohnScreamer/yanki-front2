@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { log } from "console";
 import { HYDRATE } from "next-redux-wrapper";
+import { AllFiltersType } from "../../pages/catalog";
 
 import {
     AuthLogin,
@@ -32,8 +33,16 @@ export const gameApi = createApi({
         }
     },
     endpoints: (builder) => ({
-        getAllGames: builder.query<AllGames, object>({
-            query: (param) => ({ url: `/game`, params: { ...param } }),
+        getAllGames: builder.query<AllGames, AllFiltersType>({
+            query: (param) => ({
+                url: `/game`,
+                params: { ...param },
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+            }),
         }),
         postNewOrder: builder.mutation<NewOrderTypes, NewOrderType>({
             query: (body) => ({

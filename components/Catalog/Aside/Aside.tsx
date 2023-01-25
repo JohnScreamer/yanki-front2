@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { useAppSelector } from "../../../Hooks/common";
-import { CurrencyPrice } from "../../../Hooks/useCurrentCurrency";
+
 import { AllFiltersType } from "../../../pages/catalog";
 import { isPropNull } from "../../../utiles/isPropNull";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Input from "../../UI/Input/Input";
-import PublisherList from "./PublisherList/PublisherList";
 
 type AsideType = {
     filter: AllFiltersType;
     fn: Dispatch<SetStateAction<AllFiltersType>>;
+    getGamesTrigger: any;
 };
 export type FilterKeys = keyof AllFiltersType;
 const platform = [
@@ -21,23 +20,33 @@ const platform = [
     "Nintendo Switch",
 ];
 
-const Aside: FC<AsideType> = ({ filter, fn }) => {
+const Aside: FC<AsideType> = ({ filter, fn, getGamesTrigger }) => {
     const router = useRouter();
     const handlerSearch = () => {
-        router.push({
-            pathname: "/catalog",
-            query: isPropNull({ ...filter }),
-        });
+        router.push(
+            {
+                pathname: "/catalog",
+                query: isPropNull({ ...filter, page: 1 }),
+            },
+            undefined,
+            { shallow: true }
+        );
+        fn(isPropNull({ ...filter, page: 1 }));
+        getGamesTrigger(isPropNull({ ...filter, page: 1 }));
     };
-    const currency = useAppSelector((state) => state.common.currency);
     const deleteFilterElem = (name: FilterKeys) => {
         const filtered = { ...filter };
         delete filtered[name];
-        fn(isPropNull({ ...filtered }));
-        router.push({
-            pathname: "/catalog",
-            query: isPropNull({ ...filtered }),
-        });
+        fn(isPropNull({ ...filtered, page: 1 }));
+        router.push(
+            {
+                pathname: "/catalog",
+                query: isPropNull({ ...filtered, page: 1 }),
+            },
+            undefined,
+            { shallow: true }
+        );
+        getGamesTrigger(isPropNull({ ...filtered, page: 1 }));
     };
     const filterList = (Object.keys(filter) as Array<FilterKeys>).map((el) => {
         if (filter[el] === 0) {

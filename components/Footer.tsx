@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { useAppSelector } from "../Hooks/common";
 import DropList from "./UI/DropList/DropList";
 const company = [
     { value: "Про нас", url: "№" },
@@ -15,9 +16,16 @@ const customer = [
 ];
 
 const Footer = () => {
+    const isBurgerActive = useAppSelector(
+        (state) => state.common.isBurgerActive
+    );
     return (
         <footer>
-            <div className="Container text-originText-dark dark:text-originText-light bg-white dark:bg-main-dark relative z-50">
+            <div
+                className={`Container text-originText-dark dark:text-originText-light bg-white dark:bg-main-dark relative ${
+                    isBurgerActive ? "z-0" : "z-50"
+                }`}
+            >
                 <div className="md:flex justify-between py-6 hidden ">
                     <div>
                         <h2 className="mb-5 text-xl uppercase">Компанія</h2>
