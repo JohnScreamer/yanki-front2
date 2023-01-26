@@ -10,6 +10,7 @@ import {
     useGetCommentQuery,
     useLazyGetCommentQuery,
 } from "../../service/api/game";
+import { getIsAuthSelector, getProfileSelector } from "../../utiles/selectors/profileSelectors";
 // import s from `./Comments.module.scss`;
 
 type Comments = {
@@ -28,8 +29,8 @@ const Comments: FC<Comments> = ({ data, openCommentModal, goodsId }) => {
     const newDate = newComments?.data || data;
     const list = newDate.map((el) => <Comment key={el._id} comment={el} />);
     const route = useRouter();
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
-    const profile = useAppSelector((state) => state.profile.profile);
+    const isAuth = useAppSelector(getIsAuthSelector);
+    const profile = useAppSelector(getProfileSelector);
     const [isVisible, setVisibleStatus] = useState(false);
     const hasRated = newDate.find(
         (el) => el.user.username === profile?.username

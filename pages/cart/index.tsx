@@ -6,12 +6,16 @@ import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { useAppSelector } from "../../Hooks/common";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import Price from "../../utiles/currency/Currency";
+import {
+    getCartSelector,
+    getTotalPriceSelector,
+} from "../../utiles/selectors/cartSelectors";
 const urlName = ["Головна", "Корзина"];
 type CartType = {};
 const Cart: FC<CartType> = () => {
-    const cartItems = useAppSelector((state) => state.cart.cart);
+    const cartItems = useAppSelector(getCartSelector);
     const cartList = cartItems.map((el) => <Card key={el._id} game={el} />);
-    const totalPrice = useAppSelector((state) => state.cart.totalPrice);
+    const totalPrice = useAppSelector(getTotalPriceSelector);
 
     return (
         <HeadLayout name="Корзина">

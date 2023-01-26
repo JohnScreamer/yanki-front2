@@ -13,12 +13,16 @@ import { EditProfileBody } from "../../../Types/authTypes";
 import { setProfile } from "../../../Redux/Slice/Profile";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import {
+    getIsAuthSelector,
+    getProfileSelector,
+} from "../../../utiles/selectors/profileSelectors";
 type EditPersonalInfoType = {};
 
 const EditPersonalInfo: FC<EditPersonalInfoType> = () => {
     const route = useRouter();
-    const userDate = useAppSelector((state) => state.profile.profile);
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
+    const userDate = useAppSelector(getProfileSelector);
+    const isAuth = useAppSelector(getIsAuthSelector);
     const dispatch = useAppDispatch();
     if (!isAuth) {
         route.push("/");
@@ -30,7 +34,6 @@ const EditPersonalInfo: FC<EditPersonalInfoType> = () => {
         handleSubmit,
         formState: { errors, isLoading },
         control,
-        reset,
     } = useForm({
         mode: "onBlur",
         defaultValues: {

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { useAppSelector } from "../../../Hooks/common";
 import Price from "../../../utiles/currency/Currency";
+import { getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 
 type OrderInfoType = {
@@ -10,7 +11,7 @@ type OrderInfoType = {
 
 const OrderInfo: FC<OrderInfoType> = ({ totalPrice }) => {
     const router = useRouter();
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
+    const isAuth = useAppSelector(getIsAuthSelector);
     const goToAuth = () => {
         router.push({ query: { authorization: true } });
     };

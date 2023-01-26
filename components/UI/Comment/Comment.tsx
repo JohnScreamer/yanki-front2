@@ -22,6 +22,7 @@ import {
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useRouter } from "next/router";
 import Loader from "../Loader/Loader";
+import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
 type Inputs = {
     rating: number;
     text: string;
@@ -46,7 +47,7 @@ interface Comment {
 const Comment: FC<Comment> = ({ comment }) => {
     const { text, createdAt, user, rating } = comment;
     const [isEdit, setEditStatus] = useState(false);
-    const profile = useAppSelector((state) => state.profile.profile);
+    const profile = useAppSelector(getProfileSelector);
     const [time, setTime] = useState("");
     const handlerOnClick = () => {
         setEditStatus(true);

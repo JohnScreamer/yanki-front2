@@ -4,11 +4,12 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { setTheme } from "../../../Redux/Slice/Common";
 import toast from "react-hot-toast";
+import { getCurrentTheme } from "../../../utiles/selectors/coomonSelectors";
 
 type ThemeType = {};
 
 const Theme: FC<ThemeType> = () => {
-    const themeStatus = useAppSelector((state) => state.common.theme);
+    const themeStatus = useAppSelector(getCurrentTheme);
     const dispatch = useAppDispatch();
     const toggleTheme = (theme: "light" | "dark") => {
         dispatch(setTheme(theme));

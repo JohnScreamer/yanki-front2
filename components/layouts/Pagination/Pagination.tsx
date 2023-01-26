@@ -3,6 +3,7 @@ import { ChangeEvent, FC, ReactNode } from "react";
 import { makeStyles, Pagination as MPagination } from "@mui/material";
 import { useRouter } from "next/router";
 import { useAppSelector } from "../../../Hooks/common";
+import { getCurrentTheme } from "../../../utiles/selectors/coomonSelectors";
 
 type PaginationType = {
     children: ReactNode;
@@ -17,7 +18,7 @@ const Pagination: FC<PaginationType> = ({ children, count, page, fn }) => {
     };
     const totalPage = Math.ceil(count / 9);
     const isHidden = totalPage > 1;
-    const isDark = useAppSelector((state) => state.common.theme);
+    const isDark = useAppSelector(getCurrentTheme);
     const theme = isDark === "dark" ? "white" : "";
     return (
         <div className="flex flex-col justify-center">

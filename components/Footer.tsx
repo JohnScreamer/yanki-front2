@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useAppSelector } from "../Hooks/common";
+import { getCurrentCurrency } from "../utiles/selectors/coomonSelectors";
 import Contacts from "./UI/Contacts/Contacts";
 import DropList from "./UI/DropList/DropList";
 const company = [
@@ -17,9 +18,7 @@ const customer = [
 ];
 
 const Footer = () => {
-    const isBurgerActive = useAppSelector(
-        (state) => state.common.isBurgerActive
-    );
+    const isBurgerActive = useAppSelector(getCurrentCurrency);
     return (
         <footer>
             <div

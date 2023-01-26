@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { FC, Suspense, useEffect, useState } from "react";
 import { useAppSelector } from "../../Hooks/common";
+import { getCurrentTheme } from "../../utiles/selectors/coomonSelectors";
 import Footer from "../Footer";
 import Header from "../Header";
 import Modals from "../Modals/Modals";
@@ -11,7 +12,7 @@ type LayoutType = {
 const Layout: FC<LayoutType> = ({ children }) => {
     const route = useRouter();
     const isMain = route.pathname === "/";
-    const theme = useAppSelector((state) => state.common.theme);
+    const theme = useAppSelector(getCurrentTheme);
     useEffect(() => {
         const html = document.querySelector("html");
         if (html) {

@@ -9,13 +9,15 @@ import Search from "./Search";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useLogOut } from "../../../../Hooks/useLogOut";
 import { disabledScroll } from "../../../../utiles/disabledScroll";
+import { getIsAuthSelector } from "../../../../utiles/selectors/profileSelectors";
+import { getCurrentTheme } from "../../../../utiles/selectors/coomonSelectors";
 type MobileType = {};
 
 const Mobile: FC<MobileType> = () => {
     const isMain = useIsMain();
     const dispatch = useAppDispatch();
     const route = useRouter();
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
+    const isAuth = useAppSelector(getIsAuthSelector);
     useEffect(disabledScroll, []);
     const handlerIsAuth = () => {
         if (isAuth) {
@@ -24,7 +26,7 @@ const Mobile: FC<MobileType> = () => {
         }
         route.push({ query: { authorization: true } });
     };
-    const theme = useAppSelector((state) => state.common.theme);
+    const theme = useAppSelector(getCurrentTheme);
     const handlerSetTheme = (theme: "light" | "dark") => {
         dispatch(setTheme(theme));
     };

@@ -12,6 +12,7 @@ import {
     useCreateFavoriteMutation,
 } from "../service/api/game";
 import { Game } from "../Types/gameType";
+import { getProfileSliceSelector } from "../utiles/selectors/profileSelectors";
 import { useAppSelector, useAppDispatch } from "./common";
 interface FavoriteType {
     handlerOnClick: () => void;
@@ -19,7 +20,7 @@ interface FavoriteType {
     param: { isLoading: boolean; isError: boolean };
 }
 export const useFavorite = (data: Game): FavoriteType => {
-    const profile = useAppSelector((state) => state.profile);
+    const profile = useAppSelector(getProfileSliceSelector);
     const route = useRouter();
     const favoriteArr = profile?.favorite ? profile?.favorite : [];
     const isFavorite = favoriteArr.find((el) => el._id === data._id);

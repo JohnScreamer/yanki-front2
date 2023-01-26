@@ -1,13 +1,14 @@
 import { Currency } from "../../Redux/Slice/Common";
 import { FC } from "react";
 import { useAppSelector } from "../../Hooks/common";
+import { getCurrentCurrency } from "../selectors/coomonSelectors";
 
 type CurrencyType = {
     price: number;
 };
 
 const Price: FC<CurrencyType> = ({ price }) => {
-    const currency = useAppSelector((state) => state.common.currency);
+    const currency = useAppSelector(getCurrentCurrency);
     const currentPrice =
         currency === "UA₴" ? price : Math.round((price / 37) * 100) / 100;
     const currentPriceName = currency === "UA₴" ? "грн" : "USD";

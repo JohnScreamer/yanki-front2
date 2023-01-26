@@ -40,6 +40,7 @@ const MainHeaderWrapper: FC<MainHeaderWrapperType> = ({ children }) => {
                                 src={picture}
                                 layout="fill"
                                 objectFit="cover"
+                                placeholder="blur"
                                 className="relative z-0 group-hover:scale-105 duration-300 transition-transform"
                             />
                         </div>
@@ -56,6 +57,7 @@ const MainHeaderWrapper: FC<MainHeaderWrapperType> = ({ children }) => {
                                 src={picture3}
                                 layout="fill"
                                 objectFit="cover"
+                                placeholder="blur"
                                 className="  object-[-200px]  duration-300 transition-transform"
                             />
                         </div>

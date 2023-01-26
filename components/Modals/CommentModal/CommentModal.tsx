@@ -16,6 +16,7 @@ import { useAppSelector } from "../../../Hooks/common";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
 import ShowError from "../../PopUp/ShowErrorPopUp";
 import toast from "react-hot-toast";
+import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
 const schema = yup
     .object({
         rating: yup
@@ -43,7 +44,7 @@ const CommentModal: FC<CommentModalType> = ({
     setVisibleCommentModal,
 }) => {
     const route = useRouter();
-    const userID = useAppSelector((state) => state.profile.profile?._id);
+    const userID = useAppSelector(getProfileSelector)?._id;
     const id = route.query.id as string;
 
     const [addComment, { isError, isLoading: load, data, error }] =

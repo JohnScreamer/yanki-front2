@@ -5,11 +5,12 @@ import HeadLayout from "../../components/layouts/HeadLayout";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { useAppSelector } from "../../Hooks/common";
 import { Game } from "../../Types/gameType";
+import { getFavoriteSelector } from "../../utiles/selectors/profileSelectors";
 
 type FavoriteType = {};
 const urlName = ["Головна", "Вибране"];
 const favorite: FC<FavoriteType> = () => {
-    const games = useAppSelector((state) => state.profile.favorite);
+    const games = useAppSelector(getFavoriteSelector);
     const route = useRouter();
     const isWindow = typeof window === "undefined" ? false : true;
 

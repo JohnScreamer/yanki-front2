@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { addGame } from "../../../Redux/Slice/Cart";
 import { Game } from "../../../Types/gameType";
+import { getCartSelector } from "../../../utiles/selectors/cartSelectors";
 import PopUp from "../../PopUp/PopUp";
 import AddRemoveGame from "../../UI/AddRemoveGame/AddRemoveGame";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
@@ -12,7 +13,7 @@ type AddToCartBtnsType = {
 };
 
 const AddToCartBtns: FC<AddToCartBtnsType> = ({ data }) => {
-    const cartArr = useAppSelector((state) => state.cart.cart);
+    const cartArr = useAppSelector(getCartSelector);
     const hasInCart = cartArr.find((el) => el._id === data._id);
     const dispatch = useAppDispatch();
     const addGameToCart = (data: Game) => {

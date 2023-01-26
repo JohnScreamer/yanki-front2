@@ -6,6 +6,7 @@ import * as React from "react";
 import { useIsMain } from "../../../Hooks/useIsMain";
 import { Currency } from "../../../Redux/Slice/Common";
 import { useAppSelector } from "../../../Hooks/common";
+import { getCurrentTheme } from "../../../utiles/selectors/coomonSelectors";
 
 interface SelectType {
     list: Array<{ name: string }>;
@@ -35,7 +36,7 @@ const SelectCustom: FC<SelectType> = ({ list, value, onChange, label }) => {
             {el.name}
         </li>
     ));
-    const theme = useAppSelector((state) => state.common.theme);
+    const theme = useAppSelector(getCurrentTheme);
     const arrowColor = isMain ? "#f5f5f5" : "#252525";
     const listStyle = isMain
         ? "absolute bg-prime-light dark:bg-main2-dark text-center min-w-full z-30"

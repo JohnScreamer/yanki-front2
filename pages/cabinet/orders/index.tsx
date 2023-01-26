@@ -8,6 +8,7 @@ import { OrderListResponse } from "../../../Types/Order.Types";
 import { useAppSelector } from "../../../Hooks/common";
 import { useRouter } from "next/router";
 import HeadLayout from "../../../components/layouts/HeadLayout";
+import { getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
 
 export const getServerSideProps: GetServerSideProps =
     wrapper.getServerSideProps((store) => async (ctx) => {
@@ -37,7 +38,7 @@ type ordersType = {
 
 const orders: FC<ordersType> = ({ data }) => {
     const route = useRouter();
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
+    const isAuth = useAppSelector(getIsAuthSelector);
     const isWindow = typeof window === "undefined" ? false : true;
 
     if (!isAuth && isWindow) {

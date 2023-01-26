@@ -14,6 +14,8 @@ import { useIsMain } from "../../../Hooks/useIsMain";
 import { useAppSelector } from "../../../Hooks/common";
 import PopUp from "../../PopUp/PopUp";
 import toast from "react-hot-toast";
+import { getAmountSelector } from "../../../utiles/selectors/cartSelectors";
+import { getFavoriteSelector, getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
 // import basket from "./../../../public/svg/basket.svg";
 // import loop from "./../../../public/svg/loop.svg";
 // import loop from "./../../../public/svg/loop.svg";
@@ -25,8 +27,8 @@ type NavListType = {
 const NavList: FC<NavListType> = ({ setSearchStatus, searchStatus }) => {
     const route = useRouter();
     const [isHome, setStatus] = useState(true);
-    const isAuth = useAppSelector((state) => state.profile.isAuth);
-    const isCartEmpty = useAppSelector((state) => state.cart.amount);
+    const isAuth = useAppSelector(getIsAuthSelector);
+    const isCartEmpty = useAppSelector(getAmountSelector);
     const isMain = useIsMain();
     const handlerIsAuth = () => {
         if (isAuth) {
@@ -42,8 +44,8 @@ const NavList: FC<NavListType> = ({ setSearchStatus, searchStatus }) => {
             icon: "🛒",
         });
     };
-    const totalAmount = useAppSelector((state) => state.cart.amount);
-    const favorite = useAppSelector((state) => state.profile.favorite);
+    const totalAmount = useAppSelector(getAmountSelector);
+    const favorite = useAppSelector(getFavoriteSelector);
     const totalFavorite = favorite ? favorite.length : 0;
     const handlerGotoFavorite = () => {
         if (!!totalFavorite && isAuth) {

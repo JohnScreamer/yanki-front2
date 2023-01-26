@@ -11,17 +11,18 @@ import { OrderInputs } from "../../../Types/Order.Types";
 import OrderFields from "./OrderFields";
 import { clearCart } from "../../../Redux/Slice/Cart";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
+import { getAllCartSelector } from "../../../utiles/selectors/cartSelectors";
+import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
 
 type OrderType = {};
 const Order: FC<OrderType> = () => {
     const goTo = useRouteTo();
     const toOrderDone = goTo(null, "orderDone");
     const dispatch = useAppDispatch();
-    const { totalPrice, amount, orderCart } = useAppSelector(
-        (state) => state.cart
-    );
+    const { totalPrice, amount, orderCart } =
+        useAppSelector(getAllCartSelector);
 
-    const userDate = useAppSelector((state) => state.profile.profile);
+    const userDate = useAppSelector(getProfileSelector);
     const { email, city, _id, lastName, firstName, postNumber, phone } =
         userDate || {};
 

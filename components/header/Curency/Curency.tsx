@@ -1,12 +1,13 @@
 import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { Currency, setCurrency } from "../../../Redux/Slice/Common";
+import { getCurrentCurrency } from "../../../utiles/selectors/coomonSelectors";
 import SelectCustom from "../../UI/Select/Select";
 
 type CurencyType = {};
 
 const Curency: FC<CurencyType> = () => {
-    const curetCurrency = useAppSelector((state) => state.common.currency);
+    const curetCurrency = useAppSelector(getCurrentCurrency);
     const dispatch = useAppDispatch();
 
     const handlerSetCurrency = (val: string) => {

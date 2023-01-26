@@ -11,6 +11,7 @@ import {
     removeGameFromFavorite,
 } from "../../../Redux/Slice/Profile";
 import FavoriteWrapper from "../../layouts/FavoriteWrapper/FavoriteWrapper";
+import { getFavoriteSelector } from "../../../utiles/selectors/profileSelectors";
 
 type CardType = {
     game: Game;
@@ -18,7 +19,7 @@ type CardType = {
 
 const Card: FC<CardType> = ({ game }) => {
     const { imgUrl, _id, name, price } = game;
-    const favoriteArr = useAppSelector((state) => state.profile.favorite);
+    const favoriteArr = useAppSelector(getFavoriteSelector);
     const isFavorite = favoriteArr.find((el) => el._id === _id);
     const dispatch = useAppDispatch();
     const handlerAddGame = (e: MouseEvent<HTMLDivElement>) => {
