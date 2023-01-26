@@ -106,10 +106,21 @@ const Cart = createSlice({
             state.orderCart = action.payload.orderCart;
             state.totalPrice = action.payload.totalPrice;
         },
+        clearCart(state, action: PayloadAction<undefined>) {
+            state.orderCart = [];
+            state.cart = [];
+            state.totalPrice = 0;
+            state.amount = 0;
+        },
     },
     extraReducers: {},
 });
 
 export default Cart.reducer;
-export const { addGame, removeGame, removeAllGameCopy, setCartState } =
-    Cart.actions;
+export const {
+    addGame,
+    removeGame,
+    removeAllGameCopy,
+    setCartState,
+    clearCart,
+} = Cart.actions;

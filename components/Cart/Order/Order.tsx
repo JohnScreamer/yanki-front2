@@ -1,27 +1,22 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { useAppSelector } from "../../../Hooks/common";
-import Input from "../../UI/Input/Input";
+import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { orderSchema } from "./../../../common/shema/Sheme";
 import OrderInfo from "./OrderInfo";
 import { usePostNewOrderMutation } from "../../../service/api/game";
-import PopUp from "../../PopUp/PopUp";
-import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Loader from "../../UI/Loader/Loader";
-type Inputs = {
-    email: string;
-    phone: string;
-    name: string;
-    lastName: string;
-    city: string;
-    postAddress: string;
-};
+import { OrderInputs } from "../../../Types/Order.Types";
+import OrderFields from "./OrderFields";
+import { clearCart } from "../../../Redux/Slice/Cart";
+import { useRouteTo } from "../../../Hooks/useRouteTo";
+
 type OrderType = {};
 const Order: FC<OrderType> = () => {
-    const route = useRouter();
-
+    const goTo = useRouteTo();
+    const toOrderDone = goTo(null, "orderDone");
+    const dispatch = useAppDispatch();
     const { totalPrice, amount, orderCart } = useAppSelector(
         (state) => state.cart
     );
@@ -60,13 +55,14 @@ const Order: FC<OrderType> = () => {
             toast.error("Щось пішло не так.");
         }
         if (isSuccess && data?.status === "ok") {
-            route.replace({ query: { orderDone: true } });
+            toOrderDone();
+            dispatch(clearCart());
             toast("Успішно замовлено.");
             reset();
         }
     }, [isError, isSuccess]);
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const onSubmit: SubmitHandler<OrderInputs> = (data) => {
         const { city, email, lastName, name, phone, postAddress } = data;
 
         if (totalPrice) {
@@ -89,123 +85,7 @@ const Order: FC<OrderType> = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex gap-[20px] md:flex-row flex-col "
         >
-            <div className="flex gap-[20px] flex-col">
-                <h3 className="mb-[10px] text-xl">Оформлення</h3>
-                <h4>Персональні данні:</h4>
-                <div className="flex flex-wrap m-[-10px]">
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="name"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"Ваше ім`я"}
-                                    value={""}
-                                    error={errors.name?.message}
-                                    className="w-full"
-                                    field={field}
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="lastName"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"Ваша фамілія"}
-                                    value={""}
-                                    className="w-full"
-                                    error={errors.lastName?.message}
-                                    field={field}
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="email"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"Ваш e-mail"}
-                                    value={""}
-                                    field={field}
-                                    error={errors.email?.message}
-                                    className="w-full"
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="phone"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"Ваш телефон"}
-                                    value={""}
-                                    className="w-full"
-                                    error={errors.phone?.message}
-                                    field={field}
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                </div>
-                <h4>Адрес доставки:</h4>
-                <div className="flex flex-wrap m-[-10px]">
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="city"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"Місто"}
-                                    value={""}
-                                    className="w-full"
-                                    field={field}
-                                    error={errors.city?.message}
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                    <div className="md:w-1/2 w-full p-[10px]">
-                        <Controller
-                            name="postAddress"
-                            control={control}
-                            render={({ field }) => (
-                                <Input
-                                    placeholder={"ВІділення пошти"}
-                                    value={""}
-                                    className="w-full"
-                                    field={field}
-                                    error={errors.postAddress?.message}
-                                    fn={() => {}}
-                                />
-                            )}
-                        />
-                    </div>
-                </div>
-            </div>
-            {/* <PopUp
-                alertType="warning"
-                isVisible={isOrderError}
-                setVisibleStatus={setErrorStatus}
-                text="Упс.Виникла помилка.Спробуйте ще раз."
-            />
-            <PopUp
-                alertType="success"
-                isVisible={isOrdered}
-                setVisibleStatus={setOrderStatus}
-                text="Товар успішно замовлений."
-            /> */}
+            <OrderFields control={control} errors={errors} />
 
             <OrderInfo totalPrice={totalPrice} />
             {newOrderLoading && <Loader />}

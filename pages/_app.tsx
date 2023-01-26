@@ -6,33 +6,13 @@ import { useEffect } from "react";
 import NextNProgress from "nextjs-progressbar";
 import { setFavorite, setProfile } from "../Redux/Slice/Profile";
 import { api } from "../service/axiosApiRequest/api";
-
 import { Toaster } from "react-hot-toast";
-import { useAppDispatch } from "../Hooks/common";
-import {
-    IInitialState as CommonInit,
-    setCommonState,
-} from "../Redux/Slice/Common";
-import { IInitialState, setCartState } from "../Redux/Slice/Cart";
+import { useSetFromLS } from "../Hooks/useSetFromLS";
 
 function MyApp({ Component, ...rest }: AppProps) {
     const { store, props } = wrapper.useWrappedStore(rest);
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        const common = localStorage.getItem("common");
-        const cart = localStorage.getItem("cart");
-        if (common) {
-            dispatch(setCommonState(JSON.parse(common) as CommonInit));
-        }
-        if (cart) {
-            dispatch(setCartState(JSON.parse(cart) as IInitialState));
-        }
-
-        const html = document.querySelector("html");
-        if (html) {
-            html.style.overflowY = "scroll";
-        }
-    }, []);
+    const setDataFromLS = useSetFromLS();
+    useEffect(setDataFromLS, []);
 
     return (
         <>

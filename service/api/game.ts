@@ -19,7 +19,6 @@ import {
 import { FavoriteResponseType, FavoriteType } from "../../Types/favoriteTypes";
 import { AllGames } from "../../Types/gameType";
 import { NewOrderType, NewOrderTypes } from "../../Types/Order.Types";
-import { getLSAuthorization } from "../../utiles/getLSAuthorization/getLSAuthorization";
 export const gameApi = createApi({
     reducerPath: "gameApi",
     tagTypes: ["Favorite", "Comment", "Rating"],

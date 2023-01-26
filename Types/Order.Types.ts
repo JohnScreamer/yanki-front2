@@ -40,3 +40,12 @@ export type OrderListResponse = {
     status: string;
     data: Array<OrderList>;
 };
+
+export type OrderInputs = {
+    email: string;
+    phone: string;
+    name: string;
+    lastName: string;
+    city: string;
+    postAddress: string;
+};

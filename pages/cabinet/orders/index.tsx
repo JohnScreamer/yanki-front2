@@ -50,7 +50,7 @@ const orders: FC<ordersType> = ({ data }) => {
             </div>
         );
     }
-    const list = data.data
+    const list = [...data.data]
         .reverse()
         .map((el) => <CardList data={el} key={el.createdAt} />);
 

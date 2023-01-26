@@ -11,7 +11,9 @@ export const useRouteTo = () => {
                     deleteArr.forEach((el) => delete newRoute[el]);
                 }
 
-                router.push({ query: { ...newRoute } });
+                router.push({ query: { ...newRoute } }, undefined, {
+                    shallow: true,
+                });
             };
         }
 
@@ -21,7 +23,9 @@ export const useRouteTo = () => {
                 deleteArr.forEach((el) => delete newRoute[el]);
             }
 
-            router.push({ query: { ...newRoute, [to]: true } });
+            router.push({ query: { ...newRoute, [to]: true } }, undefined, {
+                shallow: true,
+            });
         };
     };
 };
