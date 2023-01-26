@@ -14,7 +14,7 @@ import { useAddCommentMutation } from "../../../service/api/game";
 import { useRouter } from "next/router";
 import { useAppSelector } from "../../../Hooks/common";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
-import ShowError from "../../PopUp/ShowErrorPopUp";
+import ShowError from "../../UI/PopUp/ShowErrorPopUp";
 import toast from "react-hot-toast";
 import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
 const schema = yup

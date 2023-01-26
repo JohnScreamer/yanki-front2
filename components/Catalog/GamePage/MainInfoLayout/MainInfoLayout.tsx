@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { CommentType, RatingType } from "../../../Types/CommentType";
-import { Game } from "../../../Types/gameType";
-import Price from "../../../utiles/currency/Currency";
-import { isPropNull } from "../../../utiles/isPropNull";
-import FavoriteWrapper from "../../layouts/FavoriteWrapper/FavoriteWrapper";
-import AddToCartBtns from "../AddToCartBtn/AddToCartBtns";
+import { CommentType, RatingType } from "../../../../Types/CommentType";
+import { Game } from "../../../../Types/gameType";
+import Price from "../../../../utiles/currency/Currency";
+import { isPropNull } from "../../../../utiles/isPropNull";
+import FavoriteWrapper from "../../../layouts/FavoriteWrapper/FavoriteWrapper";
+import AddToCartBtns from "../../AddToCartBtn/AddToCartBtns";
 import MainInfo from "../MainInfo/MainInfo";
 import Rating from "../RatingWrapper/Rating";
 const mainGameInfo: Array<keyof Game> = [
@@ -34,7 +34,7 @@ const MainInfoLayout: FC<MainInfoLayoutType> = ({ data, rating }) => {
     return (
         <div className="flex md:flex-row flex-col justify-center lg:gap-[50px] gap-[20px]">
             <div className=" flex justify-center ">
-                <Image height={540} width={450} src={imgUrl} />
+                <Image height={540} alt="товар" width={450} src={imgUrl} />
             </div>
             <div className=" md:w-3/5 w-full flex flex-col gap-[20px] ">
                 <h1 className="text-xl">{name}</h1>

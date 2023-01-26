@@ -43,6 +43,7 @@ const Card: FC<CardType> = ({ game }) => {
                             layout="fill"
                             objectFit="cover"
                             src={imgUrl}
+                            alt="товар"
                             className=" group-hover:scale-[115%] scale-110 duration-500"
                         />
                         <div

@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
-import { AllFiltersType } from "../../../../pages/catalog";
-import SelectList from "../../../UI/SelectList/SelectList";
-import { FilterKeys } from "../Aside";
+import SelectList from "../../../UI/Select&DropList/SelectList/SelectList";
+import { FilterKeys } from "../../Aside/Aside";
 
 const publisherArr = [
     "Electronic Arts",

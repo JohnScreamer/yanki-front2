@@ -1,12 +1,12 @@
 import { Dispatch, FC, memo, SetStateAction } from "react";
 import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import { Game } from "../../../Types/gameType";
-import Card from "../../UI/Card/Card";
+import Card from "../Card/Card";
 
 import { isPropNull } from "../../../utiles/isPropNull";
 import { useRouter } from "next/router";
-import { AllFiltersType } from "../../../pages/catalog";
 import Pagination from "../../layouts/Pagination/Pagination";
+import { AllFiltersType } from "../../../Types/catalogTypes";
 type GoodsListType = {
     games: Array<Game>;
     getGamesTrigger: (data: any) => void;

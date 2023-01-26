@@ -19,7 +19,7 @@ const Cart: FC<CartType> = () => {
 
     return (
         <HeadLayout name="Корзина">
-            <div className="Container mx-auto ">
+            <div className="Container mx-auto pb-[50px]">
                 <Scrumbs arrName={urlName} />
                 {cartItems.length ? (
                     <ul className="md:mb-[30px] mb-[15px] font-">{cartList}</ul>

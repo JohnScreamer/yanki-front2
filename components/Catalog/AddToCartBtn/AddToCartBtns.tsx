@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { addGame } from "../../../Redux/Slice/Cart";
 import { Game } from "../../../Types/gameType";
 import { getCartSelector } from "../../../utiles/selectors/cartSelectors";
-import PopUp from "../../PopUp/PopUp";
+import PopUp from "../../UI/PopUp/PopUp";
 import AddRemoveGame from "../../UI/AddRemoveGame/AddRemoveGame";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 

@@ -1,16 +1,17 @@
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { AllFiltersType } from "../../../../Types/catalogTypes";
 import { isPropNull } from "../../../../utiles/isPropNull";
 import { AsideType, FilterKeys } from "../Aside";
 
-type FilterTagListType = AsideType & {};
+type FilterTagListType = Omit<AsideType, "filter"> & {};
 
 const FilterTagList: FC<FilterTagListType> = ({
-    filter,
     setFilter,
     getGamesTrigger,
 }) => {
     const router = useRouter();
+    const filter = router.query as AllFiltersType;
     const deleteFilterElem = (name: FilterKeys) => {
         const filtered = { ...filter };
         delete filtered[name];

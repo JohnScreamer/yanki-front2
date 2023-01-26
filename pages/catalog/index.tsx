@@ -10,22 +10,12 @@ import { api } from "../../service/axiosApiRequest/api";
 import HeadLayout from "../../components/layouts/HeadLayout";
 import toast from "react-hot-toast";
 import GoodsList from "../../components/Catalog/GoodsList/GoodsList";
+import { AllFiltersType } from "../../Types/catalogTypes";
 type CatalogType = {
     data: AllGames;
 };
-
+const defParam = { amount: 0, games: [] };
 const urlName = ["Головна", "Каталог", "Гра"];
-export type AllFiltersType = {
-    page?: number;
-    sort?: string;
-    name?: string | null;
-    order?: string;
-    ["price[gte]"]?: number;
-    ["price[lte]"]?: number;
-    platform?: string;
-    publisher?: string;
-};
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const param = context.query;
 
@@ -44,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const catalog: FC<CatalogType> = ({ data }) => {
     const [getGamesTrigger, { isLoading, isError, data: newData, error }] =
         useLazyGetAllGamesQuery();
-    const { amount, games } = newData || data || { amount: 0, games: [] };
+    const { amount, games } = newData || data || defParam;
     const router = useRouter();
     const [filter, setFilter] = useState<AllFiltersType>(router.query);
 
@@ -55,12 +45,12 @@ const catalog: FC<CatalogType> = ({ data }) => {
     return (
         <HeadLayout name="Каталог">
             <>
-                <div className="Container">
+                <div className="Container pb-[50px]">
                     <Scrumbs arrName={urlName} />
                 </div>
                 <div className="Container mx-auto">
                     <div className="flex md:flex-row flex-col">
-                        <aside className=" md:w-[180px]  w-full  pr-[0px] md:pr-[5px] ">
+                        <aside className=" md:w-[180px]   w-full  pr-[0px] md:pr-[5px] ">
                             <Aside
                                 filter={filter}
                                 setFilter={setFilter}

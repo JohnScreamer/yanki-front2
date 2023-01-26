@@ -99,8 +99,8 @@ const Comment: FC<Comment> = ({ comment }) => {
             >
                 <div className="flex  border-accent-light dark:border-accent75-dark- border-b-[1px] items-center p-1 ">
                     <div className="relative w-11 h-10 mr-4 rounded-full overflow-hidden">
-                        {/* <Image layout="fill" objectFit="cover" src={imgUrl} /> */}
-                        <Image layout="fill" objectFit="cover" src={noPhoto} />
+                       
+                        <Image layout="fill" alt="аватар" objectFit="cover" src={noPhoto} />
                     </div>
 
                     <div className="mr-auto text-lg font-medium">

@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import { FC, useState } from "react";
 import { TEXT } from "../../common/constants/text";
-import MainInfoLayout from "../../components/Catalog/MainInfoLayout/MainInfoLayout";
-import Comments from "../../components/Game/Comments";
+import MainInfoLayout from "../../components/Catalog/GamePage/MainInfoLayout/MainInfoLayout";
+import Comments from "../../components/Catalog/GamePage/Comments";
 import GameInfo from "../../components/Game/GameInfo";
 import HeadLayout from "../../components/layouts/HeadLayout";
 import ModalLayout from "../../components/layouts/ModalLayout/ModalLayout";
@@ -53,7 +53,7 @@ const game: FC<gameType> = ({ data, comments, rating }) => {
     const urlName = ["Головна", "Каталог", name];
     return (
         <HeadLayout name={name}>
-            <div className="Container">
+            <div className="Container pb-[50px]">
                 <div>
                     <Scrumbs arrName={urlName} />
                 </div>

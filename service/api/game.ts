@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { log } from "console";
 import { HYDRATE } from "next-redux-wrapper";
-import { AllFiltersType } from "../../pages/catalog";
 
 import {
     AuthLogin,
@@ -9,6 +7,7 @@ import {
     EditProfileBody,
     RegistrationType,
 } from "../../Types/authTypes";
+import { AllFiltersType } from "../../Types/catalogTypes";
 import {
     CommentAddResponse,
     CommentBody,

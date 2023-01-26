@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import React, { FC, Suspense, useEffect, useState } from "react";
 import { useAppSelector } from "../../Hooks/common";
 import { getCurrentTheme } from "../../utiles/selectors/coomonSelectors";
-import Footer from "../Footer";
-import Header from "../Header";
+import Footer from "../UI/Footer/Footer";
+import Header from "../header/Header";
 import Modals from "../Modals/Modals";
 import MainHeaderWrapper from "./MainHeaderWrapper/MainHeaderWrapper";
 type LayoutType = {

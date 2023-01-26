@@ -116,6 +116,7 @@ const Error404 = () => {
             <Image
                 src={bg}
                 layout="fill"
+                alt="бекграунд"
                 objectFit="cover"
                 className="absolute"
             />

@@ -14,7 +14,7 @@ const Card: FC<CardType> = ({ game }) => {
         <Link href={`/catalog/${game._id}`}>
             <li className="  max-[768px]:w-1/2 w-1/3    max-[445px]:w-full        p-[7.5px] cursor-pointer">
                 <div className="mb-[15px]">
-                    <Image height={400} width={370} src={game.imgUrl} />
+                    <Image height={400} alt="товар" width={370} src={game.imgUrl} />
                 </div>
                 <div className="flex flex-col justify-center max-w-[370px] px-[15px]">
                     <h4 className="mb-[5px] line-clamp-2">{game.name}</h4>

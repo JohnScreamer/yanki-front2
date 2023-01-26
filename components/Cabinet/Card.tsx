@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import Card from "../Cart/Card/Card";
-import SelectList from "../UI/SelectList/SelectList";
+import SelectList from "../UI/Select&DropList/SelectList/SelectList";
 import { useAppSelector } from "../../Hooks/common";
 import Price from "../../utiles/currency/Currency";
 import { OrderList } from "../../Types/Order.Types";

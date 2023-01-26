@@ -44,6 +44,7 @@ const Card: FC<CardType> = ({ game, ordered, noBorder }) => {
                     <Image
                         height={110}
                         width={90}
+                        alt="товар"
                         src={game.imgUrl}
                         className="mr-[10px] "
                     />

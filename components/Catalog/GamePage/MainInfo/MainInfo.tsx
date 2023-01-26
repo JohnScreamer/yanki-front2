@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { NAMES_PROP } from "../../../common/GamePropertiesName";
-import { Game } from "../../../Types/gameType";
+import { NAMES_PROP } from "../../../../common/GamePropertiesName";
+import { Game } from "../../../../Types/gameType";
 
 type MainInfoType = {
     findByProperties: (data: string, data2: string | number) => void;

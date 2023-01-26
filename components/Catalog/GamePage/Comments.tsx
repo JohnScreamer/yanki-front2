@@ -1,16 +1,19 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { CommentsResponse, CommentType } from "../../Types/CommentType";
-import DefaultBtn from "../UI/Buttons/DefoultBtn/DefaultBtn";
-import Comment from "../UI/Comment/Comment";
+import { CommentsResponse, CommentType } from "../../../Types/CommentType";
+import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
+import Comment from "../../UI/Comment/Comment";
 import CommentsDisabledIcon from "@mui/icons-material/CommentsDisabled";
-import { useAppSelector } from "../../Hooks/common";
-import PopUp from "../PopUp/PopUp";
+import { useAppSelector } from "../../../Hooks/common";
+import PopUp from "../../UI/PopUp/PopUp";
 import { useRouter } from "next/router";
 import {
     useGetCommentQuery,
     useLazyGetCommentQuery,
-} from "../../service/api/game";
-import { getIsAuthSelector, getProfileSelector } from "../../utiles/selectors/profileSelectors";
+} from "../../../service/api/game";
+import {
+    getIsAuthSelector,
+    getProfileSelector,
+} from "../../../utiles/selectors/profileSelectors";
 // import s from `./Comments.module.scss`;
 
 type Comments = {

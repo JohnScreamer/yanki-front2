@@ -74,22 +74,18 @@ const Mobile: FC<MobileType> = () => {
                                 Особистий кабінет
                             </div>
                         </li>
-                        <Link href={"/delivery"}>
+                        <Link href={"/pay_information"}>
                             <li
                                 className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                                 onClick={handlerCloseBurger}
                             >
-                                Оплата і доставка
+                                Про оплата
                             </li>
                         </Link>
                         <Link href={"/about"}>
                             <li
                                 onClick={handlerCloseBurger}
-                                className={`py-5 cursor-pointer border-t-[0.5px] ${
-                                    isMain
-                                        ? "border-white  "
-                                        : "border-prime-light dark:border-text-dark"
-                                } w-full text-center`}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                             >
                                 Про нас
                             </li>
@@ -126,7 +122,7 @@ const Mobile: FC<MobileType> = () => {
                         </li>
                         {isAuth ? (
                             <li
-                                className={`py-5 cursor-pointer border-y-[0.5px] ${linkStyle} w-full text-center`}
+                                className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                                 onClick={handlerLogOut}
                             >
                                 Вийти

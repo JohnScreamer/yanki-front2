@@ -12,10 +12,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useIsMain } from "../../../Hooks/useIsMain";
 import { useAppSelector } from "../../../Hooks/common";
-import PopUp from "../../PopUp/PopUp";
+import PopUp from "../../UI/PopUp/PopUp";
 import toast from "react-hot-toast";
 import { getAmountSelector } from "../../../utiles/selectors/cartSelectors";
-import { getFavoriteSelector, getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
+import {
+    getFavoriteSelector,
+    getIsAuthSelector,
+} from "../../../utiles/selectors/profileSelectors";
 // import basket from "./../../../public/svg/basket.svg";
 // import loop from "./../../../public/svg/loop.svg";
 // import loop from "./../../../public/svg/loop.svg";

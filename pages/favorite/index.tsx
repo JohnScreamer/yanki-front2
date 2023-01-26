@@ -24,7 +24,7 @@ const favorite: FC<FavoriteType> = () => {
     return (
         <HeadLayout name="Обране">
             <div className="">
-                <div className="Container ">
+                <div className="Container pb-[50px] ">
                     <Scrumbs arrName={urlName} />
                     <ul className=" flex flex-wrap m-[-7.5px] ">
                         {gameFavoriteList}

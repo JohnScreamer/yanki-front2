@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { ErrorData } from "../../Types/CommentType";
+import { ErrorData } from "../../../Types/CommentType";
 import PopUp from "./PopUp";
 type ShowErrorType = {
     error: any;

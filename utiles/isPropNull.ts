@@ -1,4 +1,3 @@
-import { AllFiltersType } from "../pages/catalog";
 // const defFilter: AllFiltersType = {
 //     "price[gte]": 1,
 //     "price[lte]": 2,
@@ -8,6 +7,9 @@ import { AllFiltersType } from "../pages/catalog";
 //     platform: undefined,
 //     publisher: undefined,
 //     sort: undefined,
+
+import { AllFiltersType } from "../Types/catalogTypes";
+
 // };
 export function isPropNull<T extends AllFiltersType>(obj: T) {
     type keys = keyof T;

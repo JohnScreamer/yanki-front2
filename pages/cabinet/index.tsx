@@ -8,7 +8,7 @@ type PersonalCabinetType = {};
 const personalCabinet: FC<PersonalCabinetType> = () => {
     return (
         <HeadLayout name="Особистий кабінет">
-            <div className="min-h-screen">
+            <div className="Container pb-[50px]">
                 <Nav />
                 <EditPersonalInfo />
             </div>

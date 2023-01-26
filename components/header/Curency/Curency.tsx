@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { Currency, setCurrency } from "../../../Redux/Slice/Common";
 import { getCurrentCurrency } from "../../../utiles/selectors/coomonSelectors";
-import SelectCustom from "../../UI/Select/Select";
+import SelectCustom from "../../UI/Select&DropList/Select/Select";
 
 type CurencyType = {};
 

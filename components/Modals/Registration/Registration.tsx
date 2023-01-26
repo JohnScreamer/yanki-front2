@@ -15,7 +15,7 @@ import { $CombinedState } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { setProfile } from "../../../Redux/Slice/Profile";
 import { useRouter } from "next/router";
-import ShowError from "../../PopUp/ShowErrorPopUp";
+import ShowError from "../../UI/PopUp/ShowErrorPopUp";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 const schema = yup

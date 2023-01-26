@@ -1,13 +1,11 @@
 import { useRouter } from "next/router";
 import { Dispatch, FC, memo, SetStateAction, useEffect, useState } from "react";
-import { AllFiltersType } from "../../../pages/catalog";
 import { isPropNull } from "../../../utiles/isPropNull";
-import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
-import DropList from "../../UI/DropList/DropList";
-import Input from "../../UI/Input/Input";
+import DropList from "../../UI/Select&DropList/DropList/DropList";
 import { FilterKeys } from "../Aside/Aside";
-import PlatformList from "../Aside/PlatformList/PlatformList";
-import PublisherList from "../Aside/PublisherList/PublisherList";
+import PlatformList from "./PlatformList/PlatformList";
+import PublisherList from "./PublisherList/PublisherList";
+import { AllFiltersType } from "../../../Types/catalogTypes";
 
 type FiltersType = {
     sort: string | undefined;
