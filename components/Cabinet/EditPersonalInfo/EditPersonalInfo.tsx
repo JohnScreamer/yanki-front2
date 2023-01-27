@@ -16,6 +16,10 @@ const EditPersonalInfo: FC<EditPersonalInfoType> = () => {
     const route = useRouter();
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(getIsAuthSelector);
+    if (!isAuth) {
+        route.push("/");
+    }
+
     const {
         control,
         errors,
@@ -27,9 +31,6 @@ const EditPersonalInfo: FC<EditPersonalInfoType> = () => {
         onSubmit,
         setAvatar,
     } = useSetEditProfile();
-    if (!isAuth) {
-        route.push("/");
-    }
 
     useEffect(() => {
         if (isSuccess && data?.response) {
