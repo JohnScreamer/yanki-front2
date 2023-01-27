@@ -130,6 +130,7 @@ module.exports = {
             },
             animation: {
                 slide: "slide 0.4s linear ",
+                scale: "scale 1s linear ",
                 swingBottom:
                     "swingBottom 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both",
             },
@@ -137,6 +138,10 @@ module.exports = {
                 slide: {
                     "0%": { transform: "translateX(-300px)" },
                     "100%": { transform: "translateX(0)" },
+                },
+                scale: {
+                    "0%": { opacity: "0" },
+                    "100%": { opacity: "100%" },
                 },
                 swingBottom: {
                     "0%": {

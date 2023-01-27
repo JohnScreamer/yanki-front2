@@ -86,15 +86,15 @@ const Input: FC<InputType> = ({
                         padding ? "" : "px-[39px] py-4"
                     }  sm:text-base text-sm flex items-center ${
                         error
-                            ? "border-red-600"
+                            ? "border-red-600 text-red-600"
                             : "border-black dark:bg-text-dark"
                     }   border border-solid placeholder:text-center ${
                         inputType === "number" ? "font-mono" : ""
-                    }   placeholder:text-prime50-light dark:placeholder:text-main-dark outline-0 dark:focus:border-accent75-dark duration-300 focus:border-accent-light ${className}`}
+                    }   placeholder:text-prime50-light  dark:placeholder:text-main-dark outline-0 dark:focus:border-accent75-dark duration-300 focus:border-accent-light ${className}`}
                 />
                 {type === "password" ? svgIcon : null}
                 {error ? (
-                    <span className="text-red-600 absolute text-sm bg-white dark:bg-main2-dark">
+                    <span className="text-red-600 absolute text-sm  dark:bg-main2-dark">
                         {error}
                     </span>
                 ) : null}

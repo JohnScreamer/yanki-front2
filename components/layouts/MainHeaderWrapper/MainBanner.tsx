@@ -13,7 +13,7 @@ const MainBanner: FC<MainBannerType> = ({ refWindow }) => {
             parallaxContainerRef={refWindow}
             strength={0.05}
         >
-            <div className="backdrop-blur-md center rounded-xl overflow-hidden p-1 inline-flex absolute max-[640px]:w-full translate-y-[-50%] translate-x-[-50%] top-1/2 left-1/2  flex-col text-white">
+            <div className="backdrop-blur-md center animate-scale rounded-xl overflow-hidden p-1 inline-flex absolute max-[640px]:w-full translate-y-[-50%] translate-x-[-50%] top-1/2 left-1/2  flex-col text-white">
                 <h1 className="md:text-[46px] text-[32px] md:mb-5 mb-[15px] p-2 text-center">
                     Нова колекція ігор
                 </h1>
