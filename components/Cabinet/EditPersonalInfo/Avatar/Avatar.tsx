@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Dispatch, FC, SetStateAction } from "react";
+import { BASE_URL } from "../../../../common/url";
 import EditAvatar from "../EditAvatar";
 import noAva from "./../../../../public/img/photo.png";
 type AvatarType = {
@@ -13,7 +14,7 @@ const Avatar: FC<AvatarType> = ({ avatar, setAvatar }) => {
             <div className="h-[150px] w-[150px] relative rounded-full overflow-hidden">
                 {avatar ? (
                     <Image
-                        src={`https://yankisli.herokuapp.com${avatar}`}
+                        src={BASE_URL + avatar}
                         objectFit="cover"
                         layout="fill"
                     />

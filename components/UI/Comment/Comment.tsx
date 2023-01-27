@@ -23,6 +23,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useRouter } from "next/router";
 import Loader from "../Loader/Loader";
 import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
+import { BASE_URL } from "../../../common/url";
 type Inputs = {
     rating: number;
     text: string;
@@ -104,7 +105,7 @@ const Comment: FC<Comment> = ({ comment }) => {
                                 layout="fill"
                                 alt="аватар"
                                 objectFit="cover"
-                                src={`https://yankisli.herokuapp.com${comment.user.avatar}`}
+                                src={BASE_URL + comment.user.avatar}
                             />
                         ) : (
                             <Image

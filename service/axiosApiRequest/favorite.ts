@@ -5,8 +5,9 @@ import { AllGames, GetGame } from "../../Types/gameType";
 import { AuthLogin, AuthMe } from "../../Types/authTypes";
 import { FavoriteResponseType } from "../../Types/favoriteTypes";
 import { OrderListResponse } from "../../Types/Order.Types";
+import { BASE_URL } from "../../common/url";
 
-const base = axios.create({ baseURL: "https://yankisli.herokuapp.com" });
+const base = axios.create({ baseURL: BASE_URL });
 base.interceptors.request.use((config: any) => {
     // const token = getCookie("auth");
 

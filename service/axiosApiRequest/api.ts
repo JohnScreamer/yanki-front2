@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GetServerSidePropsContext, NextPageContext } from "next";
 import Cookies, { parseCookies } from "nookies";
+import { BASE_URL } from "../../common/url";
 import { apiReq } from "./favorite";
 type ApiReturnType = {
     apiReq: ReturnType<typeof apiReq>;
@@ -11,7 +12,7 @@ export const api = (
     const cookies = ctx ? Cookies.get(ctx) : parseCookies();
     const token = cookies.auth;
     const instance = axios.create({
-        baseURL: "https://yankisli.herokuapp.com", //https://yankisli.herokuapp.com //http://localhost:4000
+        baseURL: BASE_URL,
         headers: {
             authorization: token,
         },

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
+import { BASE_URL } from "../../common/url";
 
 import {
     AuthLogin,
@@ -22,7 +23,7 @@ export const gameApi = createApi({
     reducerPath: "gameApi",
     tagTypes: ["Favorite", "Comment", "Rating"],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://yankisli.herokuapp.com", //https://yankisli.herokuapp.com  http://localhost:4000
+        baseUrl: BASE_URL,
         credentials: "include",
     }),
     extractRehydrationInfo(action, { reducerPath }) {

@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { setProfile } from "../../../Redux/Slice/Profile";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import { getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
 
 import Avatar from "./Avatar/Avatar";
 import PersonInfoField from "./PersonInfoFields/PersonInfoField";
@@ -13,12 +12,7 @@ import { useSetEditProfile } from "../../../Hooks/useSetEditProfile";
 type EditPersonalInfoType = {};
 
 const EditPersonalInfo: FC<EditPersonalInfoType> = () => {
-    const route = useRouter();
     const dispatch = useAppDispatch();
-    const isAuth = useAppSelector(getIsAuthSelector);
-    if (!isAuth) {
-        route.push("/");
-    }
 
     const {
         control,
