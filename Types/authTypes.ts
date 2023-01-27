@@ -31,6 +31,7 @@ export type ProfileType = {
     firstName?: string;
     lastName?: string;
     city?: string;
+    avatar?: string;
     description?: string;
     postNumber?: string;
     createdAt?: string;
@@ -45,4 +46,5 @@ export type EditProfileBody = {
     lastName: string;
     city: string;
     postNumber: string;
+    avatar?: string;
 };

@@ -4,7 +4,7 @@ export type CommentType = {
     text: string;
 
     user: {
-        imgUrl: string;
+        avatar: string;
         username: string;
     };
 

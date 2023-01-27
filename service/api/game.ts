@@ -179,6 +179,13 @@ export const gameApi = createApi({
                 method: "PATCH",
             }),
         }),
+        setAvatar: builder.mutation<any, any>({
+            query: (body) => ({
+                url: "/uploads",
+                body,
+                method: "POST",
+            }),
+        }),
     }),
 });
 

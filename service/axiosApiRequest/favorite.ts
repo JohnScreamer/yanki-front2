@@ -6,7 +6,7 @@ import { AuthLogin, AuthMe } from "../../Types/authTypes";
 import { FavoriteResponseType } from "../../Types/favoriteTypes";
 import { OrderListResponse } from "../../Types/Order.Types";
 
-const base = axios.create({ baseURL: "http://localhost:4000" });
+const base = axios.create({ baseURL: "https://yankisli.herokuapp.com" });
 base.interceptors.request.use((config: any) => {
     // const token = getCookie("auth");
 
@@ -51,5 +51,8 @@ export const apiReq = (base: AxiosInstance) => ({
     },
     async getUserOrders(id: string) {
         return base.get<OrderListResponse>(`/order/${id}`);
+    },
+    async setNewAvatar(data: any) {
+        return base.post<any>(`/uploads`, data);
     },
 });
