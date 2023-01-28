@@ -22,7 +22,7 @@ const Pagination: FC<PaginationType> = ({ children, count, page, fn }) => {
     const theme = isDark === "dark" ? "white" : "";
     return (
         <div className="flex flex-col justify-center">
-            <div className="flex justify-center py-5 relative min-h-[48px] max-[768px]:flex-col">
+            <div className="flex justify-center md:py-5 py-1  relative min-h-[48px] max-[768px]:flex-col">
                 <div className="flex justify-center !text-white">
                     {isHidden && (
                         <MPagination

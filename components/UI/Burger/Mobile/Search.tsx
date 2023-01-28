@@ -38,7 +38,7 @@ const Search: FC<SearchType> = () => {
             key={el._id}
             onClick={() => goTOGame(el._id)}
             className={`cursor-pointer ${
-                isMain ? "text-base2-light" : ""
+                isMain ? "text-base2-light dark:text-white" : ""
             }  px-[4px]  text-sm hover:bg-accent-light dark:hover:bg-main2-dark w-full py-2 hover:text-white  flex gap-2  ${
                 index != 4 ? "border-black border-b-[0.3px]" : ""
             } flex-row item-center justify-between `}
@@ -46,8 +46,6 @@ const Search: FC<SearchType> = () => {
             <span className="line-clamp-2 w-full"> {el.name}</span>{" "}
             <span className="font-bold  flex  items-center justify-center font-mono gap-1 ">
                 <Price price={el.price} />
-                {/* {el.price}
-                <span> грн</span> */}
             </span>
         </li>
     ));
@@ -57,7 +55,7 @@ const Search: FC<SearchType> = () => {
                 <SearchInput fn={searchGame} value={value} />
                 {!!value.length ? (
                     <ul
-                        className={`bg-white dark:bg-main2-dark mx-auto  dark:shadow-accent-dark top-[50px] absolute  shadow-2xl mt-2 flex flex-col w-full rounded-xl overflow-hidden `}
+                        className={`bg-white dark:bg-main2-dark mx-auto  dark:shadow-accent-dark top-[50px] absolute z-50  shadow-2xl mt-2 flex flex-col w-full rounded-xl overflow-hidden `}
                     >
                         {searchList}
                     </ul>

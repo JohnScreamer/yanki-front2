@@ -70,7 +70,7 @@ const Filters: FC<FiltersType> = ({
     return (
         <div className="flex w-full">
             <div className="flex justify-between w-full md:flex-row flex-col-reverse md:pl-[15px] md:py-0 py-4 ">
-                <div className="flex gap-[30px] max-[768px]:flex-col">
+                <div className="flex md:gap-[30px]   max-[768px]:flex-col">
                     <div className="min-w-[170px]">
                         <DropList
                             list={priceSort}
