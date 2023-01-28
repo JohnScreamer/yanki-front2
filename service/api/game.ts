@@ -154,16 +154,7 @@ export const gameApi = createApi({
                 url: `/comment/rating/${id}`,
                 method: "GET",
             }),
-            providesTags: (result, error, arg) =>
-                result
-                    ? [
-                          ...result.rating.map((id: any) => ({
-                              type: "Rating" as const,
-                              id,
-                          })),
-                          "Rating",
-                      ]
-                    : ["Rating"],
+            providesTags: ["Rating"],
         }),
         editProfile: builder.mutation<CommentAddResponse, CommentUpdateBody>({
             query: (body) => ({

@@ -1,75 +1,42 @@
-import Image from "next/image";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { CommentType } from "../../../Types/CommentType";
-import noPhoto from "./../../../public/img/photo.png";
-import EditIcon from "@mui/icons-material/Edit";
 import { ClickAwayListener, Rating } from "@mui/material";
-
 import { useAppSelector } from "../../../Hooks/common";
-import {
-    Controller,
-    FieldValues,
-    SubmitHandler,
-    useForm,
-} from "react-hook-form";
-import SendIcon from "@mui/icons-material/Send";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import {
-    useDeleteCommentMutation,
-    useUpdateCommentMutation,
-} from "../../../service/api/game";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useRouter } from "next/router";
 import Loader from "../Loader/Loader";
 import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
-import { BASE_URL } from "../../../common/url";
+import Avatar from "./Avatar";
+import RatingWrapper from "./RatingWrapper";
+import CommentText from "./CommentText";
+import CommentTextEditor from "./CommentTextEditor";
+import { commentSchema } from "../../../common/yupValidationShema/comment";
+import { useComment } from "../../../Hooks/useComment";
+
 type Inputs = {
     rating: number;
     text: string;
 };
-const schema = yup
-    .object({
-        rating: yup
-            .number()
-            .min(1, "Обовязкове поле")
-            .required("Обовязкове поле."),
-        text: yup
-            .string()
-            .required("Обовязкове поле.")
-            .min(4, "Не менше 4 символів."),
-    })
-    .required();
 
 interface Comment {
     comment: CommentType;
+    getNewRating: () => void;
 }
 
-const Comment: FC<Comment> = ({ comment }) => {
-    const { text, createdAt, user, rating } = comment;
+const Comment: FC<Comment> = ({ comment, getNewRating }) => {
+    const { text, createdAt, user, rating, _id } = comment;
     const [isEdit, setEditStatus] = useState(false);
     const profile = useAppSelector(getProfileSelector);
-    const [time, setTime] = useState("");
-    const handlerOnClick = () => {
+    const handlerEditComment = () => {
         setEditStatus(true);
     };
-
-    useEffect(() => {
-        setTime(
-            new Date(createdAt).toLocaleString("ua", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            })
-        );
-    }, [createdAt]);
-
-    const [updateCommentTrigger, { isError, isLoading: load, data }] =
-        useUpdateCommentMutation();
-    const [deleteCommentTrigger, {}] = useDeleteCommentMutation();
-    const handlerDeleteComment = () => {
-        deleteCommentTrigger(comment._id);
-    };
+    const {
+        handlerDeleteComment,
+        isRemove,
+        isSuccess,
+        updateCommentTrigger,
+        load,
+    } = useComment(_id);
     const {
         handleSubmit,
         formState: { errors, isLoading },
@@ -80,8 +47,12 @@ const Comment: FC<Comment> = ({ comment }) => {
             rating: rating,
             text: text,
         },
-        resolver: yupResolver(schema),
+        resolver: yupResolver(commentSchema),
     });
+
+    if (isSuccess || isRemove) {
+        getNewRating();
+    }
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         updateCommentTrigger({
@@ -98,120 +69,22 @@ const Comment: FC<Comment> = ({ comment }) => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="border-prime15-light dark:border-accent2-light border-[1px] p-2"
             >
-                <div className="flex  border-accent-light dark:border-accent75-dark- border-b-[1px] items-center p-1 ">
-                    <div className="relative w-11 h-10 mr-4 rounded-full overflow-hidden">
-                        {comment.user.avatar ? (
-                            <Image
-                                layout="fill"
-                                alt="аватар"
-                                objectFit="cover"
-                                src={BASE_URL + comment.user.avatar}
-                            />
-                        ) : (
-                            <Image
-                                layout="fill"
-                                alt="аватар"
-                                objectFit="cover"
-                                src={noPhoto}
-                            />
-                        )}
-                    </div>
-
-                    <div className="mr-auto text-lg font-medium">
-                        {user.username}
-                    </div>
-                    <div className="text-sm ">{time}</div>
-                </div>
-                <div className="flex justify-end">
-                    {isEdit && isUserComment ? (
-                        <Controller
-                            name="rating"
-                            control={control}
-                            render={({ field }) => (
-                                <Rating
-                                    className="text-[#E0BEA2] my-1"
-                                    sx={{
-                                        ".MuiRating-iconEmpty ": {
-                                            color: "#E0BEA2",
-                                        },
-                                    }}
-                                    {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e);
-                                        e.preventDefault();
-                                    }}
-                                />
-                            )}
-                        />
-                    ) : (
-                        <Rating
-                            className="text-[#E0BEA2] my-1"
-                            sx={{
-                                ".MuiRating-iconEmpty ": {
-                                    color: "#E0BEA2",
-                                },
-                            }}
-                            name={"simple-controlled"}
-                            value={rating}
-                            readOnly
-                            onChange={(event, newValue) => {
-                                // setValue(newValue);
-                            }}
-                        />
-                    )}
-                </div>
-
+                <Avatar comment={comment} />
+                <RatingWrapper
+                    control={control}
+                    rating={rating}
+                    isEdit={isEdit}
+                    isUserComment={isUserComment}
+                />
                 {isEdit && isUserComment ? (
-                    <div>
-                        <Controller
-                            name="text"
-                            control={control}
-                            render={({ field }) => (
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    {...field}
-                                    autoFocus
-                                    className="block p-2.5 w-full text-sm text-gray-900  bg-gray-50 rounded-lg border focus:outline-none border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Напишіть свою думку про гру..."
-                                ></textarea>
-                            )}
-                        />
-                        {errors.text?.message ? (
-                            <div className="text-red-600">
-                                {errors.text?.message}
-                            </div>
-                        ) : null}
-
-                        <div className="flex justify-end  py-1">
-                            {" "}
-                            <button type="submit">
-                                <SendIcon />
-                            </button>
-                        </div>
-                    </div>
+                    <CommentTextEditor control={control} errors={errors} />
                 ) : (
-                    <>
-                        <div className=" min-h-[100px]  block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border focus:outline-none border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {text}
-                        </div>
-                        {isUserComment && (
-                            <div className="flex justify-end py-1 g-4">
-                                <button
-                                    className="mr-[5px] group"
-                                    onClick={handlerDeleteComment}
-                                >
-                                    <DeleteForeverIcon className="group-hover:fill-accent-light" />
-                                </button>
-                                <button
-                                    onClick={handlerOnClick}
-                                    className="group"
-                                >
-                                    <EditIcon className="group-hover:fill-accent-light" />
-                                </button>
-                            </div>
-                        )}
-                    </>
+                    <CommentText
+                        text={text}
+                        handlerEditComment={handlerEditComment}
+                        handlerDeleteComment={handlerDeleteComment}
+                        isUserComment={isUserComment}
+                    />
                 )}
                 {load && <Loader />}
             </form>

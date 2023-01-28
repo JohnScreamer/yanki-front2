@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { TEXT } from "../../common/constants/text";
 import MainInfoLayout from "../../components/Catalog/GamePage/MainInfoLayout/MainInfoLayout";
 import Comments from "../../components/Catalog/GamePage/Comments";
@@ -11,10 +11,16 @@ import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { api } from "../../service/axiosApiRequest/api";
 import { CommentType, RatingType } from "../../Types/CommentType";
 import { Game, GetGame } from "../../Types/gameType";
+import {
+    useGetAllRatingQuery,
+    useLazyGetAllRatingQuery,
+} from "../../service/api/game";
+import { useRouter } from "next/router";
 type gameType = {
     data: Game;
     comments: Array<CommentType>;
     rating: RatingType | null;
+    id: string;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -43,12 +49,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             data: game.data.game,
             comments: comments.data.data,
             rating: rating.data.rating[0],
+            id,
         },
     };
 };
 
-const game: FC<gameType> = ({ data, comments, rating }) => {
+const game: FC<gameType> = ({ data, comments, rating, id }) => {
     const [isVisibleCommentModal, setVisibleCommentModal] = useState(false);
+    const [getNewRatingData, { data: newRating }] = useLazyGetAllRatingQuery();
+    const getNewRating = () => {
+        getNewRatingData(id);
+    };
+    const totalRating = newRating?.rating[0] ? newRating?.rating[0] : rating;
     const { name } = data;
     const urlName = ["Головна", "Каталог", name];
     return (
@@ -58,7 +70,7 @@ const game: FC<gameType> = ({ data, comments, rating }) => {
                     <Scrumbs arrName={urlName} />
                 </div>
                 <div>
-                    <MainInfoLayout data={data} rating={rating} />
+                    <MainInfoLayout data={data} rating={totalRating} />
                     <div>
                         <div className="py-[15px]">
                             <h3 className="text-xl mb-[30px]">Опис</h3>
@@ -72,6 +84,7 @@ const game: FC<gameType> = ({ data, comments, rating }) => {
                             <div className="md:w-1/2 w-full ">
                                 <Comments
                                     data={comments}
+                                    getNewRating={getNewRating}
                                     openCommentModal={setVisibleCommentModal}
                                     goodsId={data._id}
                                 />

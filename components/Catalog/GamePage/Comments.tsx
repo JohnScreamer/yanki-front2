@@ -1,36 +1,36 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { CommentsResponse, CommentType } from "../../../Types/CommentType";
+import { FC, useState } from "react";
+import { CommentType } from "../../../Types/CommentType";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Comment from "../../UI/Comment/Comment";
 import CommentsDisabledIcon from "@mui/icons-material/CommentsDisabled";
 import { useAppSelector } from "../../../Hooks/common";
 import PopUp from "../../UI/PopUp/PopUp";
 import { useRouter } from "next/router";
-import {
-    useGetCommentQuery,
-    useLazyGetCommentQuery,
-} from "../../../service/api/game";
+import { useGetCommentQuery } from "../../../service/api/game";
 import {
     getIsAuthSelector,
     getProfileSelector,
 } from "../../../utiles/selectors/profileSelectors";
-// import s from `./Comments.module.scss`;
 
 type Comments = {
     data: Array<CommentType>;
     openCommentModal: (state: boolean) => void;
     goodsId: string;
+    getNewRating: () => void;
 };
 
-const Comments: FC<Comments> = ({ data, openCommentModal, goodsId }) => {
-    const {
-        isLoading,
-        isSuccess,
-        data: newComments,
-    } = useGetCommentQuery(goodsId);
+const Comments: FC<Comments> = ({
+    data,
+    openCommentModal,
+    goodsId,
+    getNewRating,
+}) => {
+    const { data: newComments } = useGetCommentQuery(goodsId);
 
     const newDate = newComments?.data || data;
-    const list = newDate.map((el) => <Comment key={el._id} comment={el} />);
+    const list = newDate.map((el) => (
+        <Comment key={el._id} getNewRating={getNewRating} comment={el} />
+    ));
     const route = useRouter();
     const isAuth = useAppSelector(getIsAuthSelector);
     const profile = useAppSelector(getProfileSelector);
