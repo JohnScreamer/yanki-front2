@@ -11,10 +11,7 @@ import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { api } from "../../service/axiosApiRequest/api";
 import { CommentType, RatingType } from "../../Types/CommentType";
 import { Game, GetGame } from "../../Types/gameType";
-import {
-    useGetAllRatingQuery,
-    useLazyGetAllRatingQuery,
-} from "../../service/api/game";
+import { useLazyGetAllRatingQuery } from "../../service/api/game";
 import { useRouter } from "next/router";
 type gameType = {
     data: Game;
