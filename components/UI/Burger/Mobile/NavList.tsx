@@ -81,7 +81,7 @@ const NavList: FC<NavListType> = ({ isMain, linkStyle }) => {
                         Про нас
                     </li>
                 </Link>
-                <Link href={""}>
+                <Link href={"/contacts"}>
                     <li
                         onClick={handlerCloseBurger}
                         className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
