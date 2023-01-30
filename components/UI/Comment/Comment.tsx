@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { CommentType } from "../../../Types/CommentType";
 import { ClickAwayListener, Rating } from "@mui/material";
 import { useAppSelector } from "../../../Hooks/common";
@@ -49,10 +49,11 @@ const Comment: FC<Comment> = ({ comment, getNewRating }) => {
         },
         resolver: yupResolver(commentSchema),
     });
-
-    if (isSuccess || isRemove) {
-        getNewRating();
-    }
+    useEffect(() => {
+        if (isSuccess || isRemove) {
+            getNewRating();
+        }
+    }, [isSuccess, isRemove]);
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         updateCommentTrigger({

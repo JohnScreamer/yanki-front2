@@ -8,7 +8,7 @@ import switchnin from "./../../public/img/switch.jpg";
 export const categoriesList = [
     {
         name: "PlayStation 4",
-        url: "#",
+        url: "/catalog",
         img: ps4,
         categories: "PlayStation 4",
     },

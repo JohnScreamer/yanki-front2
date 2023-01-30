@@ -65,7 +65,7 @@ const Comments: FC<Comments> = ({
                 <div className="flex gap-3 flex-col">{list}</div>
             ) : (
                 <h4 className="flex flex-col justify-center  flex-grow min-h-[205px] text-lg  items-center h-full w-full">
-                    Немає відгунів{" "}
+                    Немає відгуків{" "}
                     <span>
                         <CommentsDisabledIcon className="w-16 h-16" />
                     </span>

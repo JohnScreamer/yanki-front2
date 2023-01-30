@@ -34,7 +34,7 @@ const MainInfoLayout: FC<MainInfoLayoutType> = ({ data, rating }) => {
     return (
         <div className="flex md:flex-row flex-col justify-center lg:gap-[50px] gap-[20px]">
             <div className=" max-w-[450px] w-full mx-auto  md:w-2/5   justify-center ">
-                <div className="w-full pt-[120%]  relative relative">
+                <div className="w-full pt-[120%]  relative ">
                     <Image
                         layout="fill"
                         objectFit="cover"

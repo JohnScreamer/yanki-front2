@@ -133,6 +133,8 @@ module.exports = {
                 scale: "scale 1s linear ",
                 swingBottom:
                     "swingBottom 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both",
+                slideCenter:
+                    "slideCenter 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
             },
             keyframes: {
                 slide: {
@@ -150,6 +152,16 @@ module.exports = {
                     },
                     "100%": {
                         transform: "rotateX(0deg)",
+                        opacity: "1",
+                    },
+                },
+                slideCenter: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "scale(0.5)",
+                    },
+                    "100%": {
+                        transform: "scale(1)",
                         opacity: "1",
                     },
                 },
