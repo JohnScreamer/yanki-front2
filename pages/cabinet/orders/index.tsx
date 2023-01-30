@@ -9,6 +9,7 @@ import { useAppSelector } from "../../../Hooks/common";
 import { useRouter } from "next/router";
 import HeadLayout from "../../../components/layouts/HeadLayout";
 import { getIsAuthSelector } from "../../../utiles/selectors/profileSelectors";
+import RedirectPage from "../../../components/UI/RedirectPage/RedirectPage";
 
 export const getServerSideProps: GetServerSideProps =
     wrapper.getServerSideProps((store) => async (ctx) => {
@@ -41,14 +42,17 @@ const orders: FC<ordersType> = ({ data }) => {
     const isAuth = useAppSelector(getIsAuthSelector);
     const isWindow = typeof window === "undefined" ? false : true;
 
-    if (!isAuth && isWindow) {
-        route.push("/");
+    if (!isAuth) {
+        isWindow && route.push("/");
+        return <RedirectPage />;
     }
     if (!data?.data?.length) {
         return (
-            <div className="Container">
-                <Nav />
-            </div>
+            <HeadLayout name="Замовлення">
+                <div className="Container">
+                    <Nav />
+                </div>
+            </HeadLayout>
         );
     }
     const list = [...data.data]

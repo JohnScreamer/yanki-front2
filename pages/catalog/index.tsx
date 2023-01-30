@@ -45,7 +45,7 @@ const catalog: FC<CatalogType> = ({ data }) => {
     return (
         <HeadLayout name="Каталог">
             <>
-                <div className="Container md:pb-[50px]">
+                <div className="Container ">
                     <Scrumbs arrName={urlName} />
                 </div>
                 <div className="Container mx-auto">

@@ -36,7 +36,7 @@ const Comments: FC<Comments> = ({
     const profile = useAppSelector(getProfileSelector);
     const [isVisible, setVisibleStatus] = useState(false);
     const hasRated = newDate.find(
-        (el) => el.user.username === profile?.username
+        (el) => el?.user?.username === profile?.username
     );
 
     const toLogin = () => {

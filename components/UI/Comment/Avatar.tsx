@@ -22,7 +22,7 @@ const Avatar: FC<AvatarType> = ({ comment }) => {
     return (
         <div className="flex  border-accent-light dark:border-accent75-dark- border-b-[1px] items-center p-1 ">
             <div className="relative w-11 h-10 mr-4 rounded-full overflow-hidden">
-                {comment.user.avatar ? (
+                {comment?.user?.avatar ? (
                     <Image
                         layout="fill"
                         alt="аватар"
@@ -40,7 +40,7 @@ const Avatar: FC<AvatarType> = ({ comment }) => {
             </div>
 
             <div className="mr-auto text-lg font-medium">
-                {comment.user.username}
+                {comment.user?.username}
             </div>
             <div className="text-sm ">{time}</div>
         </div>

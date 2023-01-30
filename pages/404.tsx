@@ -1,8 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import DefaultBtn from "../components/UI/Buttons/DefoultBtn/DefaultBtn";
 import bg from "./../public/img/mario.gif";
 const Error404 = () => {
+    const route = useRouter();
+    const toMain = () => {
+        route.replace("/");
+    };
     return (
         <div>
             <div className="Container min-h-screen flex pt-[2%] items-center h-full flex-col relative">
@@ -108,9 +112,8 @@ const Error404 = () => {
                         Error 404
                     </h2>
                     <p className="text-center mb-4">Something goes wrong...</p>
-                    <Link href={"/"}>
-                        <DefaultBtn>Повернутися до головної</DefaultBtn>
-                    </Link>
+
+                    <DefaultBtn fn={toMain}>Повернутися до головної</DefaultBtn>
                 </div>
             </div>
             <Image

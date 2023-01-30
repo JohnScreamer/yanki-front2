@@ -62,7 +62,7 @@ const Comment: FC<Comment> = ({ comment, getNewRating }) => {
         });
         setEditStatus(false);
     };
-    const isUserComment = user.username === profile?.username;
+    const isUserComment = user?.username === profile?.username;
     return (
         <ClickAwayListener onClickAway={() => setEditStatus(false)}>
             <form
