@@ -1,10 +1,8 @@
 import { FC, useEffect, useState } from "react";
-
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { setProfile } from "../../../Redux/Slice/Profile";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router";
 
 import Avatar from "./Avatar/Avatar";
 import PersonInfoField from "./PersonInfoFields/PersonInfoField";

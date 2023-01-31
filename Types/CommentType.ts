@@ -1,3 +1,5 @@
+import { Control, FieldErrorsImpl } from "react-hook-form";
+
 export type CommentType = {
     _id: string;
 
@@ -49,4 +51,20 @@ export type ErrorData = {
         message: string;
     };
     status: number;
+};
+
+export type CommentFiledsType = {
+    control: Control<
+        {
+            rating: number;
+            text: string;
+        },
+        any
+    >;
+    errors: Partial<
+        FieldErrorsImpl<{
+            rating: number;
+            text: string;
+        }>
+    >;
 };

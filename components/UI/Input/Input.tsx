@@ -11,7 +11,7 @@ interface InputType {
     error?: string;
     field?: any;
 
-    type?: "text" | "password" | "number";
+    type?: "text" | "password" | "number" | "email";
 }
 
 const Input: FC<InputType> = ({

@@ -157,12 +157,10 @@ module.exports = {
                 },
                 slideCenter: {
                     "0%": {
-                        opacity: "0",
                         transform: "scale(0.5)",
                     },
                     "100%": {
                         transform: "scale(1)",
-                        opacity: "1",
                     },
                 },
             },

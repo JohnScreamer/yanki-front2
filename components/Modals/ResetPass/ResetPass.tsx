@@ -1,27 +1,9 @@
 import { FC } from "react";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Input from "../../UI/Input/Input";
-import {
-    Controller,
-    FieldValues,
-    SubmitHandler,
-    useForm,
-} from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-const schema = yup
-    .object({
-        email: yup
-            .string()
-            .required("Обовязкове поле.")
-            .email("Не коректна пошта"),
-        password: yup
-            .string()
-            .required("Обовязкове поле.")
-            .min(8, "Не менше 8 символів.")
-            .matches(/[a-zA-Z]/, "Тілки латинські літери."),
-    })
-    .required();
+import { resetPassSchema } from "../../../common/shema/resetPass";
 type Inputs = {
     email: string;
 };
@@ -38,7 +20,7 @@ const ResetPass: FC<ResetPassType> = () => {
             email: "",
             password: "",
         },
-        resolver: yupResolver(schema),
+        resolver: yupResolver(resetPassSchema),
     });
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         console.log(data);

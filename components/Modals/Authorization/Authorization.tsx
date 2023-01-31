@@ -3,33 +3,18 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Input from "../../UI/Input/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useRouter } from "next/router";
 import {
-    gameApi,
     useLazyGetFavoriteQuery,
     useUserLoginMutation,
 } from "../../../service/api/game";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { setFavorite, setProfile } from "../../../Redux/Slice/Profile";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
-
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { authSchema } from "../../../common/shema/authorization";
+import AuthFields from "./AuthFields";
 
-const schema = yup
-    .object({
-        email: yup
-            .string()
-            .required("Обовязкове поле.")
-            .email("Не коректна пошта."),
-        password: yup
-            .string()
-            .required("Обовязкове поле.")
-            .min(8, "Не менше 8 символів.")
-            .matches(/[a-zA-Z]/, "Тілки латинські літери."),
-    })
-    .required();
 type Inputs = {
     email: string;
     password: string;
@@ -92,7 +77,7 @@ const Authorization: FC<AuthorizationType> = () => {
             email: "",
             password: "",
         },
-        resolver: yupResolver(schema),
+        resolver: yupResolver(authSchema),
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -105,52 +90,12 @@ const Authorization: FC<AuthorizationType> = () => {
             className="flex flex-col gap-[20px] justify-center w-[400px] max-[768px]:w-full "
         >
             <h3 className="text-center text-xl">Авторизація</h3>
-            <Controller
-                name="email"
+            <AuthFields
                 control={control}
-                render={({ field }) => (
-                    <Input
-                        fn={() => {}}
-                        className="w-full placeholder:text-start py-[15px] px-[15px] font-extralight"
-                        value=""
-                        field={field}
-                        error={errors.email?.message}
-                        placeholder="Ваш E-Mail"
-                    />
-                )}
+                errors={errors}
+                goToRegistration={goToRegistration}
+                goToResetPass={goToResetPass}
             />
-            <Controller
-                name="password"
-                control={control}
-                render={({ field }) => (
-                    <Input
-                        fn={() => {}}
-                        value=""
-                        field={field}
-                        placeholder="Ваш пароль"
-                        type="password"
-                        error={errors.password?.message}
-                        className="w-full placeholder:text-start py-[15px] px-[15px] font-extralight"
-                    />
-                )}
-            />
-
-            <div className="flex justify-between items-center max-[768px]:text-sm">
-                <button
-                    type="button"
-                    onClick={goToResetPass}
-                    className="underline hover:text-accent-light dark:hover:accent-accent75-dark cursor-pointer "
-                >
-                    Забули пароль?
-                </button>{" "}
-                <button
-                    type="button"
-                    onClick={goToRegistration}
-                    className="underline hover:text-accent-light dark:hover:accent-accent75-dark cursor-pointer"
-                >
-                    Немає акаунта?
-                </button>
-            </div>
             <DefaultBtn type="submit">Війти</DefaultBtn>
         </form>
     );

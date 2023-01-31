@@ -1,3 +1,5 @@
+import { Control, FieldErrorsImpl } from "react-hook-form";
+
 export interface AuthLogin {
     success: boolean;
     response: ProfileType;
@@ -47,4 +49,22 @@ export type EditProfileBody = {
     city: string;
     postNumber: string;
     avatar?: string;
+};
+
+export type AuthFieldsType = {
+    control: Control<
+        {
+            email: string;
+            password: string;
+        },
+        any
+    >;
+    errors: Partial<
+        FieldErrorsImpl<{
+            email: string;
+            password: string;
+        }>
+    >;
+    goToResetPass: () => void;
+    goToRegistration: () => void;
 };
