@@ -75,7 +75,7 @@ const Input: FC<InputType> = ({
             <>
                 <input
                     type={inputType}
-                    placeholder={focused ? "" : placeholder}
+                    placeholder={placeholder}
                     onFocus={handleOnFocus}
                     onBlur={handleOnBlur}
                     onChange={handlerOnChange}
@@ -84,17 +84,17 @@ const Input: FC<InputType> = ({
                     {...field}
                     className={`${
                         padding ? "" : "px-[39px] py-4"
-                    }  sm:text-base text-sm flex items-center ${
+                    }  sm:text-base text-sm flex items-center bg-white dark:bg-text-dark  ${
                         error
-                            ? "border-red-600 text-red-600"
+                            ? "border-red-600 text-red-600  placeholder:text-red-600"
                             : "border-black dark:bg-text-dark"
                     }   border border-solid placeholder:text-center ${
                         inputType === "number" ? "font-mono" : ""
-                    }   placeholder:text-prime50-light  dark:placeholder:text-main-dark outline-0 dark:focus:border-accent75-dark duration-300 focus:border-accent-light ${className}`}
+                    }   placeholder:text-prime50-light   dark:placeholder:text-main-dark outline-0 dark:focus:border-accent75-dark duration-300 focus:border-accent-light ${className}`}
                 />
                 {type === "password" ? svgIcon : null}
                 {error ? (
-                    <span className="text-red-600 absolute text-sm  dark:bg-main2-dark">
+                    <span className="text-red-600 absolute text-sm  ">
                         {error}
                     </span>
                 ) : null}
