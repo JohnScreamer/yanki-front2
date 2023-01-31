@@ -44,7 +44,7 @@ const Card: FC<CardType> = ({ game }) => {
                             objectFit="cover"
                             src={imgUrl}
                             alt="товар"
-                            className=" group-hover:scale-[115%] scale-110 duration-500"
+                            className=" group-hover:scale-[130%] scale-125 duration-500"
                         />
                         <div
                             onClick={handlerOnClick}

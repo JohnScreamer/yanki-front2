@@ -1,18 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
-import {
-    addGame,
-    CartItem,
-    removeAllGameCopy,
-    removeGame,
-} from "../../../Redux/Slice/Cart";
+import { useAppDispatch } from "../../../Hooks/common";
+import { CartItem, removeAllGameCopy } from "../../../Redux/Slice/Cart";
 import { Game } from "../../../Types/gameType";
 import Price from "../../../utiles/currency/Currency";
 import AddRemoveGame from "../../UI/AddRemoveGame/AddRemoveGame";
-// import s from `./Card.module.scss`;
 
 type CardType = {
     game: CartItem | Game;
@@ -35,7 +28,6 @@ const Card: FC<CardType> = ({ game, ordered, noBorder }) => {
                 noBorder ? "" : "border-b-[0.3px]"
             }  border-base-dark dark:border-text-dark items-center h-full`}
         >
-            {/* <Link href={`/catalog/${game._id}`}> */}
             <div
                 className=" items-center cursor-pointer h-[110px] flex"
                 onClick={goTo}
@@ -57,7 +49,7 @@ const Card: FC<CardType> = ({ game, ordered, noBorder }) => {
                 </span>
             </div>
             {ordered ? (
-                <div className="flex justify-between md:flex-row flex-col  gap-3 w-full md:max-w-[500px] max-w-full">
+                <div className="flex justify-between md:flex-row ml-auto flex-col  gap-3 w-full md:max-w-[500px] max-w-full">
                     <span className="md:hidden block      mx-[10px]">
                         <span className="line-clamp-2      ">{game.name}</span>
                     </span>
@@ -90,10 +82,6 @@ const Card: FC<CardType> = ({ game, ordered, noBorder }) => {
                                 }
                             />
                         </div>
-
-                        {/* <div className="font-bold    md:hidden flex  w-[75px] font-mono    gap-1  ">
-                        {game.totalPrice} <span>грн</span>
-                    </div> */}
                     </div>
 
                     <div className="flex  items-center ml-auto">
@@ -111,9 +99,6 @@ const Card: FC<CardType> = ({ game, ordered, noBorder }) => {
                                 />
                             </div>
 
-                            {/* <div className="font-bold    w-[75px] font-mono    gap-1  ">
-                            {game.totalPrice} <span>грн</span>
-                        </div> */}
                             <button
                                 className="flex justify-end items-end"
                                 onClick={deleteGame}
