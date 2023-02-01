@@ -2,7 +2,7 @@ import step1 from "/./public/svg/step1.svg";
 import step2 from "/./public/svg/step2.svg";
 import step3 from "/./public/svg/step3.svg";
 
-export const deliveryStepsArr = [
+export const DELIVERY_STEPS = [
     {
         text: ` Quaerat fugit velit eos neque 
 tempora. Eos, culpa sapiente?`,
@@ -20,11 +20,11 @@ est fuga ullam atque.`,
     },
 ];
 
-export const deliveryMainText = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+export const DELIVETY_MAIN_TEXT = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
 est fuga ullam atque velit necessitatibus tempore veniam ut
 inventore quasi. Quaerat fugit velit eos neque dignissimos
 tempora. Eos, culpa sapiente?`;
-export const deliverySubText = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+export const DELIVERY_SUB_TEXT = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
 est fuga ullam atque velit necessitatibus tempore veniam ut
 inventore quasi. Quaerat fugit velit eos neque dignissimos
 tempora. Eos, culpa sapiente? Lorem ipsum dolor sit amet

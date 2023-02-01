@@ -12,7 +12,7 @@ import { setFavorite, setProfile } from "../../../Redux/Slice/Profile";
 import { useRouteTo } from "../../../Hooks/useRouteTo";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { authSchema } from "../../../common/shema/authorization";
+import { AUTH_SCHEMA } from "../../../common/shema/authorization";
 import AuthFields from "./AuthFields";
 
 type Inputs = {
@@ -77,7 +77,7 @@ const Authorization: FC<AuthorizationType> = () => {
             email: "",
             password: "",
         },
-        resolver: yupResolver(authSchema),
+        resolver: yupResolver(AUTH_SCHEMA),
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {

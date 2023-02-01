@@ -12,7 +12,6 @@ import { api } from "../../service/axiosApiRequest/api";
 import { CommentType, RatingType } from "../../Types/CommentType";
 import { Game, GetGame } from "../../Types/gameType";
 import { useLazyGetAllRatingQuery } from "../../service/api/game";
-import { useRouter } from "next/router";
 type gameType = {
     data: Game;
     comments: Array<CommentType>;

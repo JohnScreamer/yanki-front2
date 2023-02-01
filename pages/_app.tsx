@@ -3,12 +3,9 @@ import type { AppContext, AppProps } from "next/app";
 import { wrapper } from "../Redux/store";
 import Layout from "../components/layouts/Layout";
 import { useEffect } from "react";
-import NextNProgress from "nextjs-progressbar";
 import { setFavorite, setProfile } from "../Redux/Slice/Profile";
 import { api } from "../service/axiosApiRequest/api";
-import { Toaster } from "react-hot-toast";
 import { useSetFromLS } from "../Hooks/useSetFromLS";
-import { accentColor } from "../common/colors";
 
 function MyApp({ Component, ...rest }: AppProps) {
     const { store, props } = wrapper.useWrappedStore(rest);
@@ -17,8 +14,6 @@ function MyApp({ Component, ...rest }: AppProps) {
 
     return (
         <>
-            <NextNProgress color={accentColor} />
-            <Toaster position="bottom-center" reverseOrder={false} />
             <Layout>
                 <Component {...props.pageProps} />
             </Layout>

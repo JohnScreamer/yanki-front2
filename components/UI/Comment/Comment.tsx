@@ -10,7 +10,7 @@ import Avatar from "./Avatar";
 import RatingWrapper from "./RatingWrapper";
 import CommentText from "./CommentText";
 import CommentTextEditor from "./CommentTextEditor";
-import { commentSchema } from "../../../common/yupValidationShema/comment";
+import { COMMENT_SCHEMA } from "../../../common/yupValidationShema/comment";
 import { useComment } from "../../../Hooks/useComment";
 
 type Inputs = {
@@ -47,7 +47,7 @@ const Comment: FC<Comment> = ({ comment, getNewRating }) => {
             rating: rating,
             text: text,
         },
-        resolver: yupResolver(commentSchema),
+        resolver: yupResolver(COMMENT_SCHEMA),
     });
     useEffect(() => {
         if (isSuccess || isRemove) {

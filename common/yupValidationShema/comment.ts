@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const commentSchema = yup
+export const COMMENT_SCHEMA = yup
     .object({
         rating: yup
             .number()

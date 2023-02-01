@@ -5,7 +5,7 @@ import labelSvg from "./../../public/svg/label.svg";
 import clockSvg from "./../../public/svg/clock.svg";
 import blankSvg from "./../../public/svg/blank.svg";
 
-export const payInfoArr = [
+export const PAY_INFORMATION = [
     {
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         icon: labelSvg,

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { orderSchema } from "./../../../common/shema/Sheme";
+import { ORDER_SCHEMA } from "./../../../common/shema/Sheme";
 import OrderInfo from "./OrderInfo";
 import { usePostNewOrderMutation } from "../../../service/api/game";
 import toast from "react-hot-toast";
@@ -41,7 +41,7 @@ const Order: FC<OrderType> = () => {
             postAddress: postNumber || "",
             city: city || "",
         },
-        resolver: yupResolver(orderSchema),
+        resolver: yupResolver(ORDER_SCHEMA),
     });
     const [newOrder, { isLoading: newOrderLoading, isError, data, isSuccess }] =
         usePostNewOrderMutation();

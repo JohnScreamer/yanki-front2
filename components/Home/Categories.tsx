@@ -2,12 +2,12 @@ import Image from "next/image";
 import { FC } from "react";
 import { Slider } from "../../utiles/slider";
 import { SwiperSlide } from "swiper/react";
-import { categoriesList } from "../../common/constants/categoriesArr";
+import { CATEGORIES_LIST } from "../../common/constants/categoriesArr";
 import Link from "next/link";
 type CategoriesType = {};
 
 const Categories: FC<CategoriesType> = () => {
-    const list = categoriesList.map((el) => (
+    const list = CATEGORIES_LIST.map((el) => (
         <SwiperSlide key={el.name}>
             <Link href={`${el.url}?platform=${el.categories}`}>
                 <li className="sm:w-[273px]  sm:h-[450px] group h-[230px] w-[165px] relative flex flex-col justify-end card cursor-pointer hover:scale-105 duration-200">

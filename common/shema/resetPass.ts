@@ -1,5 +1,5 @@
 import * as yup from "yup";
-export const resetPassSchema = yup
+export const RESET_PASS_SCHEMA = yup
     .object({
         email: yup
             .string()

@@ -1,14 +1,14 @@
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { FAVORITE_URLS } from "../../common/constants/scumbsArrs";
 import Card from "../../components/Favorite/Card/Card";
 import HeadLayout from "../../components/layouts/HeadLayout";
 import Scrumbs from "../../components/UI/Scrumbs/Scrumbs";
 import { useAppSelector } from "../../Hooks/common";
 import { Game } from "../../Types/gameType";
 import { getFavoriteSelector } from "../../utiles/selectors/profileSelectors";
-
 type FavoriteType = {};
-const urlName = ["Головна", "Вибране"];
 const favorite: FC<FavoriteType> = () => {
     const games = useAppSelector(getFavoriteSelector);
     const route = useRouter();
@@ -25,7 +25,7 @@ const favorite: FC<FavoriteType> = () => {
         <HeadLayout name="Обране">
             <div className="">
                 <div className="Container pb-[50px] ">
-                    <Scrumbs arrName={urlName} />
+                    <Scrumbs arrName={FAVORITE_URLS} />
                     <ul className=" flex flex-wrap m-[-7.5px] ">
                         {gameFavoriteList}
                     </ul>

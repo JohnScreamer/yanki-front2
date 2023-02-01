@@ -1,5 +1,5 @@
 import * as yup from "yup";
-export const registrationSchema = yup
+export const REGISTRATION_SCHEMA = yup
     .object({
         email: yup
             .string()

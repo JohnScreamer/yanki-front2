@@ -11,11 +11,12 @@ import HeadLayout from "../../components/layouts/HeadLayout";
 import toast from "react-hot-toast";
 import GoodsList from "../../components/Catalog/GoodsList/GoodsList";
 import { AllFiltersType } from "../../Types/catalogTypes";
+import { CATALOGS_URLS } from "../../common/constants/scumbsArrs";
 type CatalogType = {
     data: AllGames;
 };
 const defParam = { amount: 0, games: [] };
-const urlName = ["Головна", "Каталог", "Гра"];
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const param = context.query;
 
@@ -46,7 +47,7 @@ const catalog: FC<CatalogType> = ({ data }) => {
         <HeadLayout name="Каталог">
             <>
                 <div className="Container ">
-                    <Scrumbs arrName={urlName} />
+                    <Scrumbs arrName={CATALOGS_URLS} />
                 </div>
                 <div className="Container mx-auto">
                     <div className="flex md:flex-row flex-col">

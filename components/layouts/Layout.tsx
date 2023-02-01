@@ -6,6 +6,9 @@ import Footer from "../UI/Footer/Footer";
 import Header from "../header/Header";
 import Modals from "../Modals/Modals";
 import MainHeaderWrapper from "./MainHeaderWrapper/MainHeaderWrapper";
+import NextNProgress from "nextjs-progressbar";
+import { ACCENT_COLOR } from "../../common/colors";
+import { Toaster } from "react-hot-toast";
 type LayoutType = {
     children: React.ReactNode;
 };
@@ -24,6 +27,8 @@ const Layout: FC<LayoutType> = ({ children }) => {
         <div
             className={`min-h-full flex font-light   dark:text-originText-light text-originText-dark flex-col bg-white dark:bg-main-dark overflow-clip     `}
         >
+            <NextNProgress color={ACCENT_COLOR} />
+            <Toaster position="bottom-center" reverseOrder={false} />
             {isMain ? (
                 <div className="relative  h-[200vh]">
                     <MainHeaderWrapper>

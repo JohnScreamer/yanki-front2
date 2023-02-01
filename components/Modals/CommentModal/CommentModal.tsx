@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import CommentFileds from "./CommentFileds";
 import { useAppSelector } from "../../../Hooks/common";
 import { getProfileSelector } from "../../../utiles/selectors/profileSelectors";
-import { commentSchema } from "../../../common/shema/comment";
+import { COMMENT_SCHEMA } from "../../../common/shema/comment";
 
 type Inputs = {
     rating: number;
@@ -40,7 +40,7 @@ const CommentModal: FC<CommentModalType> = ({
             rating: 0,
             text: "",
         },
-        resolver: yupResolver(commentSchema),
+        resolver: yupResolver(COMMENT_SCHEMA),
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {

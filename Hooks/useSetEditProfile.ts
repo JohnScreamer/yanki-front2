@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { getProfileSelector } from "../utiles/selectors/profileSelectors";
 import { useAppSelector } from "./common";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editProfileSchema } from "../common/shema/Sheme";
+import { EDIT_PROFILE_SCHEMA } from "../common/shema/Sheme";
 import { useUserEditProfileMutation } from "../service/api/game";
 import { EditProfileBody } from "../Types/authTypes";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export const useSetEditProfile = () => {
             postNumber: postNumber || "",
             city: city || "",
         },
-        resolver: yupResolver(editProfileSchema),
+        resolver: yupResolver(EDIT_PROFILE_SCHEMA),
     });
     const [editProfile, { data, isSuccess }] = useUserEditProfileMutation();
 

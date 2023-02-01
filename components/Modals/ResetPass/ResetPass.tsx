@@ -3,7 +3,7 @@ import DefaultBtn from "../../UI/Buttons/DefoultBtn/DefaultBtn";
 import Input from "../../UI/Input/Input";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { resetPassSchema } from "../../../common/shema/resetPass";
+import { RESET_PASS_SCHEMA } from "../../../common/shema/resetPass";
 type Inputs = {
     email: string;
 };
@@ -20,7 +20,7 @@ const ResetPass: FC<ResetPassType> = () => {
             email: "",
             password: "",
         },
-        resolver: yupResolver(resetPassSchema),
+        resolver: yupResolver(RESET_PASS_SCHEMA),
     });
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         console.log(data);

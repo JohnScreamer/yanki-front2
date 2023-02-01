@@ -1,12 +1,12 @@
-export const company = [
+export const COMPANY = [
     { value: "Про нас", url: "№" },
     { value: "Контакти", url: "№" },
 ];
-export const useful = [
+export const USEFUL = [
     { value: "Оплата і доставка", url: "№" },
     { value: "Бонуси", url: "№" },
 ];
-export const customer = [
+export const CUSTOMER = [
     { value: "Вибране", url: "№" },
     { value: "Контакти", url: "№" },
 ];

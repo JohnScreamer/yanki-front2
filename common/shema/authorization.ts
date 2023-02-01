@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const authSchema = yup
+export const AUTH_SCHEMA = yup
     .object({
         email: yup
             .string()

@@ -1,9 +1,9 @@
 import * as yup from "yup";
 
-const phoneRegExp =
+const PHONE_REG_EXP =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-export const orderSchema = yup
+export const ORDER_SCHEMA = yup
     .object({
         email: yup
             .string()
@@ -21,7 +21,7 @@ export const orderSchema = yup
             .string()
             .required("Обовязкове поле.")
             .min(3, "Не менше 3 символів."),
-        phone: yup.string().matches(phoneRegExp, "Не валідний номер"),
+        phone: yup.string().matches(PHONE_REG_EXP, "Не валідний номер"),
         postAddress: yup
             .string()
             .required("Обовязкове поле.")
@@ -29,7 +29,7 @@ export const orderSchema = yup
     })
     .required();
 
-export const editProfileSchema = yup
+export const EDIT_PROFILE_SCHEMA = yup
     .object({
         email: yup
             .string()
@@ -47,7 +47,7 @@ export const editProfileSchema = yup
             .string()
             .required("Обовязкове поле.")
             .min(3, "Не менше 3 символів."),
-        phone: yup.string().matches(phoneRegExp, "Не валідний номер"),
+        phone: yup.string().matches(PHONE_REG_EXP, "Не валідний номер"),
         postNumber: yup
             .string()
             .required("Обовязкове поле.")

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { company, customer, useful } from "../../../common/constants/footerArr";
+import { COMPANY, CUSTOMER, USEFUL } from "../../../common/constants/footerArr";
 import Contacts from "../Contacts/Contacts";
 import DropDown from "../Select&DropList/DropDown/DropDown";
 import { ListItem } from "./FooterList";
@@ -10,13 +10,13 @@ const MobileFooter: FC<MobileFooterType> = () => {
     return (
         <div className="md:hidden block bg-white dark:bg-main-dark ">
             <DropDown defaultValue="Компанія" uppercase relative top={"0px"}>
-                <ListItem array={company} />
+                <ListItem array={COMPANY} />
             </DropDown>
             <DropDown defaultValue="Корисне" uppercase relative top={"0px"}>
-                <ListItem array={useful} />
+                <ListItem array={USEFUL} />
             </DropDown>
             <DropDown defaultValue="Покупець" uppercase relative top={"0px"}>
-                <ListItem array={customer} />
+                <ListItem array={CUSTOMER} />
             </DropDown>
             <div className="flex justify-center items-center flex-col w-full item-center pt-5">
                 <Contacts />

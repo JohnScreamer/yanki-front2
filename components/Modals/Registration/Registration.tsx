@@ -10,8 +10,8 @@ import ShowError from "../../UI/PopUp/ShowErrorPopUp";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import RegistrationFields from "./RegistrationFields";
-import { registrationSchema } from "../../../common/shema/registration";
-import { defaultRegistrationValues } from "../../../common/constants/ragistrationFields";
+import { REGISTRATION_SCHEMA } from "../../../common/shema/registration";
+import { DEFAULT_REGISTRATION_FIELDS } from "../../../common/constants/ragistrationFields";
 
 type Inputs = {
     email: string;
@@ -52,8 +52,8 @@ const Registration: FC<RegistrationType> = () => {
         control,
     } = useForm({
         mode: "onBlur",
-        defaultValues: defaultRegistrationValues,
-        resolver: yupResolver(registrationSchema),
+        defaultValues: DEFAULT_REGISTRATION_FIELDS,
+        resolver: yupResolver(REGISTRATION_SCHEMA),
     });
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         userRegistration(data);

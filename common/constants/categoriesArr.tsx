@@ -5,7 +5,7 @@ import xboxone from "./../../public/img/xboxone.webp";
 import seriax from "./../../public/img/seriesx.jpg";
 import switchnin from "./../../public/img/switch.jpg";
 
-export const categoriesList = [
+export const CATEGORIES_LIST = [
     {
         name: "PlayStation 4",
         url: "/catalog",
