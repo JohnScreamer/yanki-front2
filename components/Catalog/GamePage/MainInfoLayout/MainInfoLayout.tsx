@@ -9,6 +9,7 @@ import FavoriteWrapper from "../../../layouts/FavoriteWrapper/FavoriteWrapper";
 import AddToCartBtns from "../../AddToCartBtn/AddToCartBtns";
 import MainInfo from "../MainInfo/MainInfo";
 import Rating from "../RatingWrapper/Rating";
+import ImageWrapper from "./ImagesWrapper/ImagesWrapper";
 const mainGameInfo: Array<keyof Game> = [
     "developer",
     "genre",
@@ -33,17 +34,8 @@ const MainInfoLayout: FC<MainInfoLayoutType> = ({ data, rating }) => {
     };
     return (
         <div className="flex md:flex-row flex-col justify-center lg:gap-[50px] gap-[20px]">
-            <div className=" max-w-[450px] w-full mx-auto  md:w-2/5   justify-center ">
-                <div className="w-full pt-[120%]  relative ">
-                    <Image
-                        layout="fill"
-                        objectFit="cover"
-                        alt="товар"
-                        src={imgUrl}
-                    />
-                </div>
-            </div>
-            <div className=" md:w-3/5 w-full flex flex-col gap-[20px] ">
+            <ImageWrapper imgUrl={imgUrl} />
+            <div className=" md:w-2/4 w-full flex flex-col gap-[20px] ">
                 <h1 className="text-xl">{name}</h1>
 
                 {rating ? (

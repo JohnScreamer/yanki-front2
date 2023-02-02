@@ -38,7 +38,7 @@ const combinedReducer = combineReducers({
 //     state: ReturnType<typeof combinedReducer>,
 //     action: AnyAction
 // ) => {
-//     console.log(action.type === "__NEXT_REDUX_WRAPPER_HYDRATE__");
+//     (action.type === "__NEXT_REDUX_WRAPPER_HYDRATE__");
 
 // if (action.type === HYDRATE) {
 //     const nextState = {

@@ -49,7 +49,7 @@ const OrderInfo: FC<OrderInfoType> = ({ totalPrice }) => {
                 padding
                 className="text-sm p-3 px-2 py-3 lg:px-[9px]  "
                 fn={() => {
-                    console.log(22);
+                    22;
                 }}
             >
                 Оформлення замовлення

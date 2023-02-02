@@ -15,7 +15,7 @@ html {
 }
 @layer components {
     .Container {
-        @apply max-w-container px-[15px] w-full  mx-auto;
+        @apply max-w-[1200px] px-[15px] w-full  mx-auto;
     }
     .center {
         @apply flex justify-center items-center;

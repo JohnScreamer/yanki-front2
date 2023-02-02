@@ -52,7 +52,7 @@ const Comments: FC<Comments> = ({ data, goodsId, getNewRating }) => {
         }
         if (!!hasRated) {
             toast.error("Ви вже оцінили гру.");
-            console.log("rated");
+            ("rated");
 
             return;
         }

@@ -21,11 +21,11 @@ const EditAvatar: FC<EditAvatarType> = ({ setAvatar }) => {
                 const formData = new FormData();
                 formData.append("image", Array.from(file)[0]);
                 const { data } = await api().apiReq.setNewAvatar(formData);
-                console.log(data?.uploads);
+                data?.uploads;
                 setAvatar(data?.uploads);
             }
         } catch (error) {
-            console.log(error);
+            error;
         }
     };
 

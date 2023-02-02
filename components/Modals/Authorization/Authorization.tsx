@@ -59,6 +59,8 @@ const Authorization: FC<AuthorizationType> = () => {
     if (isSuccess && isSuccessFav) {
         goBack();
         if (firstTime.current) {
+            console.log("two");
+
             toast(`Привіт! Вдалих покупок.`, {
                 icon: "👏",
             });

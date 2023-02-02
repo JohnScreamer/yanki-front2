@@ -37,7 +37,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(
                     store.dispatch(setFavorite(favorite.data.goods));
                 }
             } catch (error) {
-                console.log("no access");
+                ("no access");
             }
 
             return {

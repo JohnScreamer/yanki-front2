@@ -52,7 +52,7 @@ const Order: FC<OrderType> = () => {
     }, [data]);
     useEffect(() => {
         if (isError) {
-            console.log(isError);
+            isError;
             toast.error("Щось пішло не так.");
         }
         if (isSuccess && data?.status === "ok") {

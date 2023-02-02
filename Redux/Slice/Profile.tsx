@@ -52,7 +52,7 @@ const Profile = createSlice({
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            console.log(action.payload.profile);
+            action.payload.profile;
             if (action.payload.profile.profile) {
                 return {
                     ...state,

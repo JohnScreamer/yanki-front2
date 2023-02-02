@@ -23,7 +23,7 @@ const ResetPass: FC<ResetPassType> = () => {
         resolver: yupResolver(RESET_PASS_SCHEMA),
     });
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+        data;
     };
     return (
         <form

@@ -36,6 +36,7 @@ const Input: FC<InputType> = ({
                     placeholder={placeholder}
                     onChange={handlerOnChange}
                     value={value}
+                    autoComplete="on"
                     min={1}
                     {...field}
                     className={`${
