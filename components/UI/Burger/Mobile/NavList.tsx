@@ -70,7 +70,7 @@ const NavList: FC<NavListType> = ({ isMain, linkStyle }) => {
                         className={`py-5 cursor-pointer border-t-[0.5px] ${linkStyle} w-full text-center`}
                         onClick={handlerCloseBurger}
                     >
-                        Про оплата
+                        Про оплату
                     </li>
                 </Link>
                 <Link href={"/about"}>

@@ -11,10 +11,10 @@ const DesktopFooter: FC<DesktopFooterType> = () => {
                 <h2 className="mb-5 text-xl uppercase">Компанія</h2>
                 <ul>
                     <li className="font-extralight">
-                        <Link href={"#"}>Про нас</Link>
+                        <Link href={"/about"}>Про нас</Link>
                     </li>
                     <li className="font-extralight">
-                        <Link href={"#"}>Контакти</Link>
+                        <Link href={"/contacts"}>Контакти</Link>
                     </li>
                 </ul>
             </div>
@@ -23,10 +23,10 @@ const DesktopFooter: FC<DesktopFooterType> = () => {
                 <h2 className="mb-5 text-xl uppercase">Корисне</h2>
                 <ul>
                     <li className="font-extralight mb-1">
-                        <Link href={"#"}>Оплата і доставка</Link>
+                        <Link href={"/pay_information"}>Оплата і доставка</Link>
                     </li>
                     <li className="font-extralight">
-                        <Link href={"#"}>Бонуси</Link>
+                        <Link href={"/pay_information"}>Бонуси</Link>
                     </li>
                 </ul>
             </div>
@@ -34,10 +34,10 @@ const DesktopFooter: FC<DesktopFooterType> = () => {
                 <h2 className="mb-5 text-xl uppercase">Покупець</h2>
                 <ul className="font-extralight">
                     <li className="mb-1">
-                        <Link href={"#"}>Вибране</Link>
+                        <Link href={"/favorite"}>Вибране</Link>
                     </li>
                     <li className="font-extralight">
-                        <Link href={"#"}>Контакти</Link>
+                        <Link href={"/contacts"}>Контакти</Link>
                     </li>
                 </ul>
             </div>

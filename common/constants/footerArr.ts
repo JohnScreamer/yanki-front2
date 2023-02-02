@@ -1,12 +1,12 @@
 export const COMPANY = [
-    { value: "Про нас", url: "№" },
-    { value: "Контакти", url: "№" },
+    { value: "Про нас", url: "/about" },
+    { value: "Контакти", url: "/contacts" },
 ];
 export const USEFUL = [
-    { value: "Оплата і доставка", url: "№" },
-    { value: "Бонуси", url: "№" },
+    { value: "Оплата і доставка", url: "/pay_information" },
+    { value: "Бонуси", url: "/pay_information" },
 ];
 export const CUSTOMER = [
-    { value: "Вибране", url: "№" },
-    { value: "Контакти", url: "№" },
+    { value: "Вибране", url: "/favorite" },
+    { value: "Контакти", url: "/contacts" },
 ];

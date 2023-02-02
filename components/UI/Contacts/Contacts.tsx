@@ -9,7 +9,7 @@ const Contacts: FC<ContactsType> = () => {
             <h2 className="mb-5 md:text-xl text-base  uppercase">Контакти</h2>
             <ul>
                 <li className="flex mb-1  max-[768px]:items-center max-[768px]:justify-center ">
-                    <Link href={"#"}>
+                    <Link href={""}>
                         <svg
                             width="17"
                             height="17"
@@ -24,7 +24,7 @@ const Contacts: FC<ContactsType> = () => {
                             />
                         </svg>
                     </Link>
-                    <Link href={"#"}>
+                    <Link href={""}>
                         <svg
                             width="17"
                             height="17"
@@ -40,10 +40,10 @@ const Contacts: FC<ContactsType> = () => {
                     </Link>
                 </li>
                 <li className="font-extralight mb-1">
-                    <Link href={"#"}>info@yanki.com</Link>
+                    <Link href={""}>info@yanki.com</Link>
                 </li>
                 <li className="font-extralight">
-                    <Link href={"#"}>+38(073) 096 36 44</Link>
+                    <Link href={""}>+38(073) 096 36 44</Link>
                 </li>
             </ul>
         </>

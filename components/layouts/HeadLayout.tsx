@@ -10,8 +10,6 @@ const HeadLayout: FC<HeadLayoutType> = ({ children, name }) => {
         <>
             <Head>
                 <title>{name}</title>
-
-                <link rel="icon" href="/public/favicon.ico" />
             </Head>
             {children}
         </>
