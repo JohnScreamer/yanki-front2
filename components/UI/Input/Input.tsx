@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
 import { FC } from "react";
-import InputError from "./inputError";
+
 import { InputType } from "../../../Types/InputTypes";
+import InputError from "./InputError";
 import PasswordBtn from "./PasswordBtn";
 
 const Input: FC<InputType> = ({
