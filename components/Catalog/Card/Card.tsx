@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC, MouseEvent } from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useAppDispatch, useAppSelector } from "../../../Hooks/common";
 import { Game } from "../../../Types/gameType";
 import Price from "../../../utiles/currency/Currency";
@@ -12,12 +10,26 @@ import {
 } from "../../../Redux/Slice/Profile";
 import FavoriteWrapper from "../../layouts/FavoriteWrapper/FavoriteWrapper";
 import { getFavoriteSelector } from "../../../utiles/selectors/profileSelectors";
+import { motion } from "framer-motion";
 
 type CardType = {
     game: Game;
 };
+const itemVariants = {
+    initial: {
+        transform: "scale(0.93)",
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+        transform: "scale(0.99)",
+    },
+};
 
 const Card: FC<CardType> = ({ game }) => {
+    const timer = Math.floor(Math.random() * 5) / 10;
+    console.log(timer);
+
     const { imgUrl, _id, name, price } = game;
     const favoriteArr = useAppSelector(getFavoriteSelector);
     const isFavorite = favoriteArr.find((el) => el._id === _id);
@@ -31,10 +43,15 @@ const Card: FC<CardType> = ({ game }) => {
         e.stopPropagation();
     };
     const handlerOnClick = isFavorite ? handlerRemoveGame : handlerAddGame;
+
     return (
         <Link href={`/catalog/${_id}`}>
-            <div
+            <motion.div
                 key={_id}
+                initial="initial"
+                animate="animate"
+                transition={{ duration: 0.3 + timer }}
+                variants={itemVariants}
                 className=" p-[7.5px]  lg:w-1/3 w-1/2 max-[375px]:w-full cursor-pointer group bg-white dark:bg-main2-dark dark:border-accent75-dark border-accent-light  dark:shadow-accent75-dark duration-500 hover:z-10 hover:shadow-2xl "
             >
                 <div className="">
@@ -63,7 +80,7 @@ const Card: FC<CardType> = ({ game }) => {
                         <Price price={price} />
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </Link>
     );
 };

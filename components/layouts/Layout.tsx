@@ -1,14 +1,15 @@
 import { useRouter } from "next/router";
-import React, { FC, Suspense, useEffect, useState } from "react";
+import React, { FC, ReactNode, Suspense, useEffect, useState } from "react";
 import { useAppSelector } from "../../Hooks/common";
 import { getCurrentTheme } from "../../utiles/selectors/coomonSelectors";
 import Footer from "../UI/Footer/Footer";
 import Header from "../header/Header";
-import Modals from "../Modals/Modals";
-import MainHeaderWrapper from "./MainHeaderWrapper/MainHeaderWrapper";
 import NextNProgress from "nextjs-progressbar";
-import { ACCENT_COLOR } from "../../common/colors";
+import MainHeaderWrapper from "./MainHeaderWrapper/MainHeaderWrapper";
+import FrameMotionWrapper from "./FrameMotionWrapper/FrameMotionWrapper";
+import Modals from "../Modals/Modals";
 import { Toaster } from "react-hot-toast";
+import { ACCENT_COLOR } from "../../common/colors";
 type LayoutType = {
     children: React.ReactNode;
 };
@@ -23,33 +24,48 @@ const Layout: FC<LayoutType> = ({ children }) => {
             html.classList.add(theme);
         }
     }, [theme]);
-    return (
-        <div
-            className={`min-h-full flex font-light   dark:text-originText-light text-originText-dark flex-col bg-white dark:bg-main-dark overflow-clip     `}
+    // let toaster: ReactNode | null = null;
+    // useEffect(() => {
+    //     toaster = ;
+    // }, []);
+    const Main = (
+        <main
+            className={`grow ${
+                isMain ? "-mt-[100vh] bg-white dark:bg-main-dark" : ""
+            } shrink flex-col  relative z-40 w-full h-full `}
         >
-            <NextNProgress color={ACCENT_COLOR} />
-            <Toaster position="bottom-center" reverseOrder={false} />
-            {isMain ? (
-                <div className="relative  h-[200vh]">
-                    <MainHeaderWrapper>
-                        <Header />
-                    </MainHeaderWrapper>
-                </div>
-            ) : (
-                <>
-                    <Header />
-                </>
-            )}
-            <Modals />
-            <main
-                className={`grow ${
-                    isMain ? "-mt-[100vh] bg-white dark:bg-main-dark" : ""
-                } shrink flex-col  relative z-40 w-full h-full `}
+            {children}
+        </main>
+    );
+    return (
+        <>
+            <div
+                className={`min-h-full flex font-light   dark:text-originText-light text-originText-dark flex-col bg-white dark:bg-main-dark overflow-clip     `}
             >
-                {children}
-            </main>
-            <Footer />
-        </div>
+                <Modals />
+                <NextNProgress color={ACCENT_COLOR} />
+                <Toaster position="bottom-center" reverseOrder={false} />
+                {isMain ? (
+                    <>
+                        <FrameMotionWrapper>
+                            <div className="relative  h-[200vh]">
+                                <MainHeaderWrapper>
+                                    <Header />
+                                </MainHeaderWrapper>
+                            </div>
+                            {Main}
+                        </FrameMotionWrapper>
+                    </>
+                ) : (
+                    <>
+                        <Header />
+                        <FrameMotionWrapper>{Main}</FrameMotionWrapper>
+                    </>
+                )}
+
+                <Footer />
+            </div>
+        </>
     );
 };
 

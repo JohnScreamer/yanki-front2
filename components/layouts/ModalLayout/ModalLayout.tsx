@@ -11,10 +11,17 @@ const ModalLayout: FC<ModalLayoutType> = ({ onClose, children }) => {
     const handlerCloseModal = () => {
         onClose(false);
     };
-
+    useEffect(() => {
+        document.body.style.cssText = `
+        height: 100vh;
+        overflow-y: hidden;`;
+        return () => {
+            document.body.style.cssText = ` `;
+        };
+    }, []);
     return (
         <div
-            className={`fixed z-[1000] bg-prime50-light top-0 left-0 w-screen  h-screen flex px-[15px] max-[768px]:pr-[32px] justify-center items-center `}
+            className={`fixed z-[1000] bg-prime50-light top-0 left-0 w-screen   h-screen flex px-[15px] max-[768px]:pr-[32px] justify-center items-center `}
         >
             <ClickAwayListener onClickAway={handlerCloseModal}>
                 <div className=" bg-white dark:bg-main2-dark animate-slideCenter  md:p-[50px] p-[20px] relative">

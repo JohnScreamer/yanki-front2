@@ -10,7 +10,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
 };
 
-
 const pay: FC = () => {
     return (
         <HeadLayout name="Про оплату">

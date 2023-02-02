@@ -1,6 +1,7 @@
 import { FC, ReactNode, useRef } from "react";
 import { useAppSelector } from "../../../Hooks/common";
 import { getBurgerStatus } from "../../../utiles/selectors/coomonSelectors";
+import FrameMotionWrapper from "../FrameMotionWrapper/FrameMotionWrapper";
 import BackgroundMainImg from "./BackgroundMainImg";
 import MainBanner from "./MainBanner";
 type MainHeaderWrapperType = {

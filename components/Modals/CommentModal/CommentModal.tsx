@@ -14,15 +14,9 @@ type Inputs = {
     rating: number;
     text: string;
 };
-type CommentModalType = {
-    name: string;
-    setVisibleCommentModal: (status: boolean) => void;
-};
+type CommentModalType = {};
 
-const CommentModal: FC<CommentModalType> = ({
-    name,
-    setVisibleCommentModal,
-}) => {
+const CommentModal: FC<CommentModalType> = () => {
     const route = useRouter();
     const userID = useAppSelector(getProfileSelector)?._id;
     const id = route.query.id as string;
@@ -51,10 +45,18 @@ const CommentModal: FC<CommentModalType> = ({
                 text: data.text,
                 user: userID,
             });
-            setVisibleCommentModal(false);
             toast.success("Відгук добавлено");
+            clearGetParam("comment");
         }
     };
+    const clearGetParam = (param: string) => {
+        const newQuery = route.query;
+        delete newQuery[param];
+        route.replace({ query: { ...newQuery } });
+    };
+    if (isError) {
+        toast.error("Упс...Щось не так");
+    }
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
@@ -62,10 +64,9 @@ const CommentModal: FC<CommentModalType> = ({
         >
             <h2 className="line-clamp-2 font-bold text-xl mr-[25px] ">
                 <span className="text-xs font-normal"></span>
-                {name}
+                Опишіть та оцініть свої враження від гри!
             </h2>
             <CommentFileds control={control} errors={errors} />
-            <ShowError error={error} isError={isError} />
         </form>
     );
 };

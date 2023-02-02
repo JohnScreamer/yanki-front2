@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import ModalLayout from "../layouts/ModalLayout/ModalLayout";
 import Authorization from "./Authorization/Authorization";
+import CommentModal from "./CommentModal/CommentModal";
 import OrderDone from "./OrderDone/OrderDone";
 import Registration from "./Registration/Registration";
 import RegistrationDone from "./RegistrationDone/RegistrationDone";
@@ -17,6 +18,7 @@ const Modals: FC<ModalsType> = () => {
         authorization,
         registrationDone,
         orderDone,
+        comment,
     } = router.query;
     const clearGetParam = (param: string) => {
         const newQuery = router.query;
@@ -45,9 +47,15 @@ const Modals: FC<ModalsType> = () => {
                     <RegistrationDone />
                 </ModalLayout>
             ) : null}
+
             {orderDone ? (
                 <ModalLayout onClose={() => clearGetParam("orderDone")}>
                     <OrderDone />
+                </ModalLayout>
+            ) : null}
+            {comment ? (
+                <ModalLayout onClose={() => clearGetParam("comment")}>
+                    <CommentModal />
                 </ModalLayout>
             ) : null}
         </>

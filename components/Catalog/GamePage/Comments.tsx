@@ -11,20 +11,15 @@ import {
     getIsAuthSelector,
     getProfileSelector,
 } from "../../../utiles/selectors/profileSelectors";
+import toast from "react-hot-toast";
 
 type Comments = {
     data: Array<CommentType>;
-    openCommentModal: (state: boolean) => void;
     goodsId: string;
     getNewRating: () => void;
 };
 
-const Comments: FC<Comments> = ({
-    data,
-    openCommentModal,
-    goodsId,
-    getNewRating,
-}) => {
+const Comments: FC<Comments> = ({ data, goodsId, getNewRating }) => {
     const { data: newComments } = useGetCommentQuery(goodsId);
 
     const newDate = newComments?.data || data;
@@ -46,14 +41,22 @@ const Comments: FC<Comments> = ({
             { shallow: true }
         );
     };
+    const openComment = () => {
+        route.push({ query: { ...route.query, comment: true } }, undefined, {
+            shallow: true,
+        });
+    };
     const handlerOnClick = () => {
         if (!isAuth) {
             return toLogin();
         }
         if (!!hasRated) {
-            return setVisibleStatus(true);
+            toast.error("Ви вже оцінили гру.");
+            console.log("rated");
+
+            return;
         }
-        openCommentModal(true);
+        openComment();
     };
     return (
         <div className="flex flex-col">

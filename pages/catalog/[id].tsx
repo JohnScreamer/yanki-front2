@@ -51,7 +51,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const game: FC<gameType> = ({ data, comments, rating, id }) => {
-    const [isVisibleCommentModal, setVisibleCommentModal] = useState(false);
     const [getNewRatingData, { data: newRating }] = useLazyGetAllRatingQuery();
     const getNewRating = () => {
         getNewRatingData(id);
@@ -81,22 +80,11 @@ const game: FC<gameType> = ({ data, comments, rating, id }) => {
                                 <Comments
                                     data={comments}
                                     getNewRating={getNewRating}
-                                    openCommentModal={setVisibleCommentModal}
                                     goodsId={data._id}
                                 />
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    {isVisibleCommentModal ? (
-                        <ModalLayout onClose={setVisibleCommentModal}>
-                            <CommentModal
-                                name={data.name}
-                                setVisibleCommentModal={setVisibleCommentModal}
-                            />
-                        </ModalLayout>
-                    ) : null}
                 </div>
             </div>
         </HeadLayout>
